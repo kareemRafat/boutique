@@ -23,7 +23,7 @@ class CategorySeeder extends Seeder
 
             Category::create([
                 'name' => $cats[$i]
-            ]);
+            ]); 
 
         }
     }
