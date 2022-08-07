@@ -11,7 +11,7 @@ class ShopComponent extends Component
 {
     use WithPagination ;
 
-    public $childCategories = [] ;
+    public $categories ;
 
     public $cat_id ;
 
@@ -19,27 +19,19 @@ class ShopComponent extends Component
     public function updateView($id)
     {
         $this->cat_id = $id ;
-        // $this->products = Product::where('cat_id' , $this->cat_id)->paginate(5);
     }
 
     public function mount()
     {
-
-        $categories = Category::where('parent' , 0)-> get();
-
-        $parent = $categories->toArray() ;
-        for ($i=0; $i < count($parent); $i++) {
-           $this->childCategories[$parent[$i]['name']] = Category::where('parent' , $parent[$i]['id'])-> get()->toArray() ;
-        }
-
+        $this->categories = Category::where('parent' , 0)-> get();
     }
 
     public function render()
     {
+        // we put the login here so we can use withPagination trait
         if(!$this->cat_id){
             $products = Product::paginate(5);
         }else{
-
             $products = Product::where('cat_id' , $this->cat_id)->paginate(2);
         }
         return view('livewire.shop.shop-component',['products' =>  $products]);

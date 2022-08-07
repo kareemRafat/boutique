@@ -22,12 +22,13 @@
               <!-- SHOP SIDEBAR-->
               <div class="col-lg-3 order-2 order-lg-1">
                 <h5 class="text-uppercase mb-4">Categories</h5>
-                @foreach ($childCategories as $key =>  $category )
-                <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">{{ $key }}</strong></div>
+                @foreach ( $categories as $category)
+                <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">{{ $category->name }}</strong></div>
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
-                            @foreach ($category as $cat )
-                            <li class="mb-2"><a class="reset-anchor" wire:click.prevent="updateView({{ $cat['id'] }})" href="">{{ $cat['name'] }}</a></li>
-                            @endforeach
+                            @if(count($category->subcategory))
+                            {{-- we pass the subcategory relation result  --}}
+                                <livewire:shop.sub-category-list :cats='$category->subcategory' :wire:key="$category->id">
+                            @endif
                         </ul>
                 @endforeach
                 <h6 class="text-uppercase mb-4">Price range</h6>
