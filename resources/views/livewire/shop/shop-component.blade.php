@@ -30,7 +30,6 @@
                             @endforeach
                         </ul>
                 @endforeach
-                {{ $cat_id }}
                 <h6 class="text-uppercase mb-4">Price range</h6>
                 <div class="price-range pt-4 mb-5">
                   <div id="range"></div>
@@ -88,7 +87,7 @@
                   <div class="col-lg-6 mb-2 mb-lg-0">
                     <p class="text-small text-muted mb-0">Showing 1–12 of 53 results</p>
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-lg-6" wire:ignore>
                     <ul class="list-inline d-flex align-items-center justify-content-lg-end mb-0">
                       <li class="list-inline-item text-muted mr-3"><a class="reset-anchor p-0" href="#"><i class="fas fa-th-large"></i></a></li>
                       <li class="list-inline-item text-muted mr-3"><a class="reset-anchor p-0" href="#"><i class="fas fa-th"></i></a></li>
@@ -123,8 +122,10 @@
                     </div>
                   </div>
                   @endforeach
+                  {{ $products->links() }}
                 </div>
                 <!-- PAGINATION-->
+
                 <nav aria-label="Page navigation example">
                   <ul class="pagination justify-content-center justify-content-lg-end">
                     <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
