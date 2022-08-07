@@ -137,7 +137,7 @@
                         </div>
                       </div>
                       <h6> <a class="reset-anchor" href="{{route('shop.details')}}">{{ $product->name }}</a></h6>
-                      <p class="small text-muted">${{ number_format($product->price /100 , 2 , ',') }}</p>
+                      <p class="small text-muted">${{ number_format($product->price /100 , 2 ) }}</p>
                     </div>
                   </div>
                   @endforeach
