@@ -13,12 +13,10 @@ class ShopComponent extends Component
 
     public $categories ;
 
-    public $catId ;
-
     public function mount()
     {
         $this->categories = Category::where('parent' , 0)-> get();
-        $this->catId = request()->cat ;
+
     }
 
     protected $listeners = [
@@ -27,12 +25,6 @@ class ShopComponent extends Component
 
     public function render()
     {
-        // we put the login here so we can use withPagination trait
-        if(!$this->catId){
-            $products = Product::paginate(5);
-        }else{
-            $products = Product::where('cat_id' , $this->catId)->paginate(2);
-        }
-        return view('livewire.shop.shop-component',['products' =>  $products]);
+        return view('livewire.shop.shop-component');
     }
 }
