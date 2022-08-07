@@ -20,7 +20,7 @@
           <div class="container p-0">
             <div class="row">
               <!-- SHOP SIDEBAR-->
-              <div class="col-lg-3 order-2 order-lg-1">
+              <div  class="col-lg-3 order-2 order-lg-1">
                 <h5 class="text-uppercase mb-4">Categories</h5>
                 @foreach ( $categories as $category)
                 <div class="py-2 px-4 bg-dark text-white mb-3"><strong class="small text-uppercase font-weight-bold">{{ $category->name }}</strong></div>
@@ -140,4 +140,5 @@
             </div>
           </div>
       </section>
+
 </div>
