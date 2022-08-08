@@ -12,28 +12,33 @@ class ProductComponent extends Component
     use WithPagination ;
     protected $paginationTheme = 'bootstrap';
 
+    protected $queryString =['cat'];
+    public $cat ;
+
     protected $listeners = [
         'reRender',
     ];
 
-    public function reRender()
+    public function reRender($id)
     {
+        $this->cat = $id ;
         $this->mount();
-        $this->render();
+        // $this->render();
     }
 
     public function mount()
     {
+
         $this->categories = Category::where('parent' , 0)-> get();
     }
 
     public function render()
     {
         // we put the login here so we can use withPagination trait
-        if(!request()->cat){
+        if(!$this->cat){
             $products = Product::paginate(5);
         }else{
-            $products = Product::where('cat_id' , request()->cat)->paginate(2);
+            $products = Product::where('cat_id' , $this->cat)->paginate(2);
         }
         return view('livewire.shop.product-component',['products' =>  $products]);
     }

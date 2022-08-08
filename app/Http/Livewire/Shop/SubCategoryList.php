@@ -16,7 +16,7 @@ class SubCategoryList extends Component
     public function changeCat($id)
     {
         $this->cat = $id ;
-        // $this->emit('reRender');
+        $this->emit('reRender', $id);
     }
 
     public function mount($cats)
