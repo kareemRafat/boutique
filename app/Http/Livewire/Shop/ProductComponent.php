@@ -16,27 +16,28 @@ class ProductComponent extends Component
     public $cat ;
 
     protected $listeners = [
-        'reRender',
+        'reRenderProductComponent',
     ];
 
-    public function reRender($id)
+    public function reRenderProductComponent($id)
     {
+        // user resetPage to remove page query string
+        $this->resetPage();
+        // put the cat id in cat query string
         $this->cat = $id ;
         $this->mount();
-        // $this->render();
     }
 
     public function mount()
     {
-
         $this->categories = Category::where('parent' , 0)-> get();
     }
 
     public function render()
     {
-        // we put the login here so we can use withPagination trait
+        // we put the logic here so we can use withPagination trait
         if(!$this->cat){
-            $products = Product::paginate(5);
+            $products = Product::paginate(2);
         }else{
             $products = Product::where('cat_id' , $this->cat)->paginate(2);
         }

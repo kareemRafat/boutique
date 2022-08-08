@@ -10,13 +10,12 @@ class SubCategoryList extends Component
     public $subCateoryList ;
 
     protected $queryString =['cat'];
-
-    public $cat ;
+    public $cat ; // this a query string param
 
     public function changeCat($id)
     {
         $this->cat = $id ;
-        $this->emit('reRender', $id);
+        $this->emit('reRenderProductComponent', $id);// send the cat id to the ProductComponent
     }
 
     public function mount($cats)
