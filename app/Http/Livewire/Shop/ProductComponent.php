@@ -37,9 +37,9 @@ class ProductComponent extends Component
     {
         // we put the logic here so we can use withPagination trait
         if(!$this->cat){
-            $products = Product::paginate(2);
+            $products = Product::paginate(5);
         }else{
-            $products = Product::where('cat_id' , $this->cat)->paginate(2);
+            $products = Product::where('cat_id' , $this->cat)->paginate(5);
         }
         return view('livewire.shop.product-component',['products' =>  $products]);
     }
