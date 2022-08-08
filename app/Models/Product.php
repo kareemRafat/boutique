@@ -11,6 +11,12 @@ class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * Get the category that owns the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+
     public function category() :BelongsTo
     {
         return $this->belongsTo(Category::class , 'cat_id');
