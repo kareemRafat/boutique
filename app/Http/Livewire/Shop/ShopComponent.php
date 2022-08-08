@@ -19,10 +19,6 @@ class ShopComponent extends Component
 
     }
 
-    protected $listeners = [
-        'reRenderParent'=>'$refresh',
-    ];
-
     public function render()
     {
         return view('livewire.shop.shop-component');

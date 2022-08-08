@@ -10,22 +10,30 @@ use Livewire\WithPagination;
 class ProductComponent extends Component
 {
     use WithPagination ;
+    protected $paginationTheme = 'bootstrap';
 
-    public $catId ;
+    protected $listeners = [
+        'reRender',
+    ];
+
+    public function reRender()
+    {
+        $this->mount();
+        $this->render();
+    }
 
     public function mount()
     {
         $this->categories = Category::where('parent' , 0)-> get();
-        $this->catId = request()->cat ;
     }
 
     public function render()
     {
         // we put the login here so we can use withPagination trait
-        if(!$this->catId){
+        if(!request()->cat){
             $products = Product::paginate(5);
         }else{
-            $products = Product::where('cat_id' , $this->catId)->paginate(2);
+            $products = Product::where('cat_id' , request()->cat)->paginate(2);
         }
         return view('livewire.shop.product-component',['products' =>  $products]);
     }

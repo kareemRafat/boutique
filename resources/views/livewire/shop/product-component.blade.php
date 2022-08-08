@@ -18,5 +18,13 @@
       </div>
     </div>
     @endforeach
-    {{ $products->links() }}
+    <div class="col-lg-12">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center justify-content-lg-end">
+                {{ $products->links() }}
+            </ul>
+        </nav>
+    </div>
+
+
   </div>
