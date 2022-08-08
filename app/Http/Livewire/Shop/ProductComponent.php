@@ -15,6 +15,8 @@ class ProductComponent extends Component
     protected $queryString =['cat'];
     public $cat ;
 
+    public $sorting ;// for sorting select box
+
     protected $listeners = [
         'reRenderProductComponent',
     ];
@@ -37,10 +39,27 @@ class ProductComponent extends Component
     {
         // we put the logic here so we can use withPagination trait
         if(!$this->cat){
-            $products = Product::paginate(5);
+
+            if($this->sorting == 'low-high') {
+                $products = Product::orderBy('price')->paginate(5);
+            }elseif($this->sorting == 'high-low'){
+                $products = Product::orderByDesc('price')->paginate(5);
+            }else{
+                $products = Product::paginate(5);
+            }
+
         }else{
-            $products = Product::where('cat_id' , $this->cat)->paginate(5);
+
+            if($this->sorting == 'low-high') {
+                $products = Product::where('cat_id' , $this->cat)->orderBy('price')->paginate(5);
+            }elseif($this->sorting == 'high-low'){
+                $products = Product::where('cat_id' , $this->cat)->orderByDesc('price')->paginate(5);
+            }else{
+                $products = Product::where('cat_id' , $this->cat)->paginate(5);
+            }
+
         }
+
         return view('livewire.shop.product-component',['products' =>  $products]);
     }
 

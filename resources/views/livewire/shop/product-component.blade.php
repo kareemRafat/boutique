@@ -8,7 +8,7 @@
             <li class="list-inline-item text-muted mr-3"><a class="reset-anchor p-0" href="#"><i class="fas fa-th-large"></i></a></li>
             <li class="list-inline-item text-muted mr-3"><a class="reset-anchor p-0" href="#"><i class="fas fa-th"></i></a></li>
             <li class="list-inline-item">
-            <select class="selectpicker ml-auto" name="sorting" data-width="200" data-style="bs-select-form-control" data-title="Default sorting">
+            <select class="selectpicker ml-auto" wire:model="sorting" name="sorting" data-width="200" data-style="bs-select-form-control" data-title="Default sorting">
                 <option value="default">Default sorting</option>
                 <option value="popularity">Popularity</option>
                 <option value="low-high">Price: Low to High</option>
