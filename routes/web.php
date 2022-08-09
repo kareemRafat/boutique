@@ -20,8 +20,10 @@ Route::get('/', function () {
 
 Route::controller(ShopController::class) ->group(function(){
     Route::get('shop'  , 'index')->name('shop');
-    Route::get('detail' , 'show')->name('shop.details');
+    Route::get('detail/{id}' , 'show')->name('shop.details');
 });
+
+
 
 
 

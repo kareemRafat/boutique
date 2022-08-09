@@ -11,7 +11,7 @@
               <!-- Link--><a class="nav-link" href="{{ route('shop') }}">Shop</a>
             </li>
             <li class="nav-item">
-              <!-- Link--><a class="nav-link" href="detail.html">Product detail</a>
+              <!-- Link--><a class="nav-link" href="{{ route('shop.details' , 1) }}">Product detail</a>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
               <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown"><a class="dropdown-item border-0 transition-link" href="index.html">Homepage</a><a class="dropdown-item border-0 transition-link" href="shop.html">Category</a><a class="dropdown-item border-0 transition-link" href="detail.html">Product detail</a><a class="dropdown-item border-0 transition-link" href="cart.html">Shopping cart</a><a class="dropdown-item border-0 transition-link" href="checkout.html">Checkout</a></div>
