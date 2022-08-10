@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Shop;
+namespace App\Http\Livewire\Design\Shop;
 
 use App\Models\Product;
 use Livewire\Component;
@@ -13,7 +13,7 @@ class ProductComponent extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $queryString =['cat'];
-    public $cat ;
+    public $cat ; // for adding values to querstring
 
     public $sorting ;// for sorting select box
 
@@ -60,7 +60,7 @@ class ProductComponent extends Component
 
         }
 
-        return view('livewire.shop.product-component',['products' =>  $products]);
+        return view('livewire.design.shop.product-component',['products' =>  $products]);
     }
 
 }

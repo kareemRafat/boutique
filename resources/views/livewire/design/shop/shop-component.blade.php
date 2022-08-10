@@ -27,7 +27,7 @@
                         <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
                             @if(count($category->subcategory))
                             {{-- we pass the subcategory relation result  --}}
-                                <livewire:shop.sub-category-list :cats='$category->subcategory' :wire:key="$category->id">
+                                <livewire:design.shop.sub-category-list :cats='$category->subcategory' :wire:key="$category->id">
                             @endif
                         </ul>
                 @endforeach
@@ -86,7 +86,7 @@
               <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
 
 
-                <livewire:shop.product-component>
+                <livewire:design.shop.product-component>
 
                 <!-- PAGINATION-->
 

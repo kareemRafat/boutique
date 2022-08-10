@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('design.layouts.app')
 
 
 @section('content')
@@ -6,11 +6,12 @@
     <div class="container">
       <div class="row mb-5">
         <!-- PRODUCT SLIDER-->
-        <livewire:detail.image-component/>
+        <livewire:design.detail.image-component/>
         <!-- PRODUCT DETAILS-->
-        <livewire:detail.product-detail-component/>
+        <livewire:design.detail.product-detail-component/>
       </div>
       <!-- DETAILS TABS-->
+
       <ul class="nav nav-tabs border-0" id="myTab" role="tablist">
         <li class="nav-item"><a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a></li>
         <li class="nav-item"><a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a></li>
@@ -26,7 +27,7 @@
           <div class="p-4 p-lg-5 bg-white">
             <div class="row">
               <div class="col-lg-8">
-                <div class="media mb-3"><img class="rounded-circle" src="img/customer-1.png" alt="" width="50">
+                <div class="media mb-3"><img class="rounded-circle" src="{{ asset('img/customer-1.png')}}"" alt="" width="50">
                   <div class="media-body ml-3">
                     <h6 class="mb-0 text-uppercase">Jason Doe</h6>
                     <p class="small text-muted mb-0 text-uppercase">20 May 2020</p>
@@ -40,7 +41,7 @@
                     <p class="text-small mb-0 text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                   </div>
                 </div>
-                <div class="media"><img class="rounded-circle" src="img/customer-2.png" alt="" width="50">
+                <div class="media"><img class="rounded-circle" src="{{ asset('img/customer-2.png')}}"" alt="" width="50">
                   <div class="media-body ml-3">
                     <h6 class="mb-0 text-uppercase">Jason Doe</h6>
                     <p class="small text-muted mb-0 text-uppercase">20 May 2020</p>
@@ -65,7 +66,7 @@
         <!-- PRODUCT-->
         <div class="col-lg-3 col-sm-6">
           <div class="product text-center skel-loader">
-            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="img/product-1.jpg" alt="..."></a>
+            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('img/product-1.jpg')}}" alt="..."></a>
               <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                   <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -81,7 +82,7 @@
         <!-- PRODUCT-->
         <div class="col-lg-3 col-sm-6">
           <div class="product text-center skel-loader">
-            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="img/product-2.jpg" alt="..."></a>
+            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('img/product-2.jpg')}}" alt="..."></a>
               <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                   <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -97,7 +98,7 @@
         <!-- PRODUCT-->
         <div class="col-lg-3 col-sm-6">
           <div class="product text-center skel-loader">
-            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="img/product-3.jpg" alt="..."></a>
+            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('img/product-3.jpg')}}" alt="..."></a>
               <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                   <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -113,7 +114,7 @@
         <!-- PRODUCT-->
         <div class="col-lg-3 col-sm-6">
           <div class="product text-center skel-loader">
-            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="img/product-4.jpg" alt="..."></a>
+            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('img/product-4.jpg')}}" alt="..."></a>
               <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                   <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>

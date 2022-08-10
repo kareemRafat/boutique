@@ -14,12 +14,10 @@ use App\Http\Controllers\ShopController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::controller(ShopController::class) ->group(function(){
-    Route::get('shop'  , 'index')->name('shop');
+    Route::get('/'  , 'index')->name('home');
+    Route::get('shop'  , 'shop')->name('shop');
     Route::get('detail/{id}' , 'show')->name('shop.details');
 });
 

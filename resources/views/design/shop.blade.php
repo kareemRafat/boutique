@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('design.layouts.app')
 
 
 @section('content')
 <div class="container">
     <!-- HERO SECTION-->
-    <livewire:shop.shop-component>
+    <livewire:design.shop.shop-component>
   </div>
 @endsection

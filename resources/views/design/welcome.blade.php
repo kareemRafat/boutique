@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('design.layouts.app')
 
 @section('content')
     <!-- HERO SECTION-->

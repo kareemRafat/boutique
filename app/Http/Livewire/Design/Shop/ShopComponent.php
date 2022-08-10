@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Shop;
+namespace App\Http\Livewire\Design\Shop;
 
 use App\Models\Category;
 use App\Models\Product;
@@ -21,6 +21,6 @@ class ShopComponent extends Component
 
     public function render()
     {
-        return view('livewire.shop.shop-component');
+        return view('livewire.design.shop.shop-component');
     }
 }

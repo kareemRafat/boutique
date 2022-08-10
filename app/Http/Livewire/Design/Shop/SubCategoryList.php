@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Shop;
+namespace App\Http\Livewire\Design\Shop;
 
 use App\Models\Product;
 use Livewire\Component;
@@ -26,7 +26,7 @@ class SubCategoryList extends Component
     public function productCount($cat_id)
     {
         // check if the category has products of not
-        
+
         return Product::where('cat_id',$cat_id)->count() > 0 ?: false ;
         // this will return true if the condition true or return false
     }
@@ -37,6 +37,6 @@ class SubCategoryList extends Component
     }
     public function render()
     {
-        return view('livewire.shop.sub-category-list');
+        return view('livewire.design.shop.sub-category-list');
     }
 }

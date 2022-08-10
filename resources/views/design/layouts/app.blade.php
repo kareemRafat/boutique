@@ -40,13 +40,13 @@
   <body>
     <div class="page-holder">
       <!-- navbar-->
-      @include('layouts.header')
+      @include('design.layouts.header')
       <!--  Modal -->
-      @include('layouts.modal')
+      @include('design.layouts.modal')
 
         @yield('content')
 
-      @include('layouts.footer')
+      @include('design.layouts.footer')
       <!-- JavaScript files-->
       <script src="{{ asset('vendor/jquery/jquery.min.js')}}"></script>
       <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
