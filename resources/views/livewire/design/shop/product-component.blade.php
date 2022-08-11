@@ -24,7 +24,7 @@
         <div class="col-lg-4 col-sm-6">
         <div class="product text-center">
             <div class="mb-3 position-relative">
-            <div class="badge text-white badge-"></div><a class="d-block" href="{{route('shop.details' , $product->id)}}"><img class="img-fluid w-100" src="img/product-1.jpg" alt="..."></a>
+            <div class="badge text-white badge-"></div><a class="d-block" href="{{route('shop.details' , $product->id)}}"><img class="img-fluid w-100" src="design/img/product-1.jpg" alt="..."></a>
             <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>

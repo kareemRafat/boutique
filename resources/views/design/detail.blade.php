@@ -27,7 +27,7 @@
           <div class="p-4 p-lg-5 bg-white">
             <div class="row">
               <div class="col-lg-8">
-                <div class="media mb-3"><img class="rounded-circle" src="{{ asset('img/customer-1.png')}}"" alt="" width="50">
+                <div class="media mb-3"><img class="rounded-circle" src="{{ asset('design/img/customer-1.png')}}"" alt="" width="50">
                   <div class="media-body ml-3">
                     <h6 class="mb-0 text-uppercase">Jason Doe</h6>
                     <p class="small text-muted mb-0 text-uppercase">20 May 2020</p>
@@ -41,7 +41,7 @@
                     <p class="text-small mb-0 text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                   </div>
                 </div>
-                <div class="media"><img class="rounded-circle" src="{{ asset('img/customer-2.png')}}"" alt="" width="50">
+                <div class="media"><img class="rounded-circle" src="{{ asset('design/img/customer-2.png')}}"" alt="" width="50">
                   <div class="media-body ml-3">
                     <h6 class="mb-0 text-uppercase">Jason Doe</h6>
                     <p class="small text-muted mb-0 text-uppercase">20 May 2020</p>
@@ -66,7 +66,7 @@
         <!-- PRODUCT-->
         <div class="col-lg-3 col-sm-6">
           <div class="product text-center skel-loader">
-            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('img/product-1.jpg')}}" alt="..."></a>
+            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('design/img/product-1.jpg')}}" alt="..."></a>
               <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                   <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -82,7 +82,7 @@
         <!-- PRODUCT-->
         <div class="col-lg-3 col-sm-6">
           <div class="product text-center skel-loader">
-            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('img/product-2.jpg')}}" alt="..."></a>
+            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('design/img/product-2.jpg')}}" alt="..."></a>
               <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                   <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -98,7 +98,7 @@
         <!-- PRODUCT-->
         <div class="col-lg-3 col-sm-6">
           <div class="product text-center skel-loader">
-            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('img/product-3.jpg')}}" alt="..."></a>
+            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('design/img/product-3.jpg')}}" alt="..."></a>
               <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                   <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -114,7 +114,7 @@
         <!-- PRODUCT-->
         <div class="col-lg-3 col-sm-6">
           <div class="product text-center skel-loader">
-            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('img/product-4.jpg')}}" alt="..."></a>
+            <div class="d-block mb-3 position-relative"><a class="d-block" href="detail.html"><img class="img-fluid w-100" src="{{ asset('design/img/product-4.jpg')}}" alt="..."></a>
               <div class="product-overlay">
                 <ul class="mb-0 list-inline">
                   <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>

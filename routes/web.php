@@ -15,13 +15,17 @@ use App\Http\Controllers\Design\ShopController;
 */
 
 
-Route::controller(ShopController::class) ->group(function(){
-    Route::get('/'  , 'index')->name('home');
-    Route::get('shop'  , 'shop')->name('shop');
-    Route::get('detail/{id}' , 'show')->name('shop.details');
+
+Route::controller(ShopController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::get('shop', 'shop')->name('shop');
+    Route::get('detail/{id}', 'show')->name('shop.details');
 });
 
+// admin dashboard routes
+Route::prefix('admin')->group(function () {
 
-
-
-
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+});
