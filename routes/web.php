@@ -24,8 +24,5 @@ Route::controller(ShopController::class)->group(function () {
 
 // admin dashboard routes
 Route::prefix('admin')->group(function () {
-
-    Route::get('/', function () {
-        return view('admin.index');
-    });
+    Route::view('/','admin.index');// main page
 });
