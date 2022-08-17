@@ -26,5 +26,5 @@ Route::controller(ShopController::class)->group(function () {
 // admin dashboard routes
 Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
     Route::view('/','admin.index')->name('main');// main page
-    Route::get('/users', UserController::class);
+    Route::get('/users', UserController::class)->name('users');
 });
