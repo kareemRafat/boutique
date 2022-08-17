@@ -33,3 +33,7 @@
 <script src="{{ asset('dashboard/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dashboard/dist/js/pages/dashboard.js')}}"></script>
+@stack('custom-scripts')
+
+
+

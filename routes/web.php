@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Design\ShopController;
 
 /*
@@ -23,6 +24,7 @@ Route::controller(ShopController::class)->group(function () {
 });
 
 // admin dashboard routes
-Route::prefix('admin')->group(function () {
-    Route::view('/','admin.index');// main page
+Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
+    Route::view('/','admin.index')->name('main');// main page
+    Route::get('/users', UserController::class);
 });
