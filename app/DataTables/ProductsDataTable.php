@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UsersDataTable extends DataTable
+class ProductsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,12 +23,9 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            // ->addColumn('action', '<span>b</span>')
-            ->addColumn('created_at', function(User $user){
-                return $user ->created_at -> diffForHumans();
-            })
-            ->addColumn('updated_at', function(User $user){
-                return $user ->updated_at -> diffForHumans();
+            ->addColumn('action', 'products.action')
+            ->addColumn('created_at', function(Product $product){
+                return $product -> created_at -> diffForHumans() ;
             })
             ->setRowId('id');
     }
@@ -36,10 +33,10 @@ class UsersDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\User $model
+     * @param \App\Models\Product $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model): QueryBuilder
+    public function query(Product $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -52,7 +49,7 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('users-table')
+                    ->setTableId('products-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -77,9 +74,16 @@ class UsersDataTable extends DataTable
 
             Column::make('id'),
             Column::make('name'),
-            Column::make('email'),
-            Column::make('created_at')->title('Created'),
-            Column::make('updated_at')->title('Updated'),
+            Column::make('price'),
+            Column::make('stock'),
+            Column::make('cat_id')->title('Category'),
+            Column::make('created_at'),
+
+            // Column::computed('action')
+            //       ->exportable(false)
+            //       ->printable(false)
+            //       ->width(60)
+            //       ->addClass('text-center'),
         ];
     }
 
@@ -90,6 +94,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
+        return 'Products_' . date('YmdHis');
     }
 }

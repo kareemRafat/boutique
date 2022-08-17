@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Design\ShopController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,5 @@ Route::controller(ShopController::class)->group(function () {
 Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
     Route::view('/','admin.index')->name('main');// main page
     Route::get('/users', UserController::class)->name('users');
+    Route::get('/products' ,[ProductController::class , 'index'])->name('products');
 });

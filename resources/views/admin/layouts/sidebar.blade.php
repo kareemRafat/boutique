@@ -28,14 +28,13 @@
           </div>
         </div>
       </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="admin/" class="nav-link active">
+            <a href="{{ route('admin.main') }}" class="nav-link {{ request()->is('admin') ? 'active' : ''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -64,10 +63,19 @@
             </ul> --}}
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.users') }}" class="nav-link">
+            <a href="{{ route('admin.users') }}" class="nav-link {{ request()->is('admin/users') ? 'active' : ''}}">
               <i class="nav-icon fa fa-users"></i>
               <p>
                 Users
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('admin.products') }}" class="nav-link {{ request()->is('admin/products') ? 'active' : ''}}">
+              <i class="nav-icon fab fa-product-hunt"></i>
+              <p>
+                Products
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
@@ -77,7 +85,6 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Widgets
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
