@@ -23,10 +23,20 @@ class ProductsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'products.action')
+            ->addColumn('action', 'admin.buttons.products-group')
+            ->addColumn('price', function(Product $product){
+                return "$". number_format($product->price/100, 2)  ;
+            })
+            ->addColumn('stock', function(Product $product){
+                return $product -> pro_stock  ;
+            })
+            ->addColumn('cat_id', function(Product $product){
+                return $product -> category -> name  ;
+            })
             ->addColumn('created_at', function(Product $product){
                 return $product -> created_at -> diffForHumans() ;
             })
+            ->rawColumns(['stock' , 'action']) // to not escape tags
             ->setRowId('id');
     }
 
@@ -52,8 +62,10 @@ class ProductsDataTable extends DataTable
                     ->setTableId('products-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
+                    // ->orderBy(0 , 'ASC') // to sort id asc
+                    ->parameters([
+                        'order' => [0,'asc']
+                    ])
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),
@@ -79,11 +91,11 @@ class ProductsDataTable extends DataTable
             Column::make('cat_id')->title('Category'),
             Column::make('created_at'),
 
-            // Column::computed('action')
-            //       ->exportable(false)
-            //       ->printable(false)
-            //       ->width(60)
-            //       ->addClass('text-center'),
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
         ];
     }
 

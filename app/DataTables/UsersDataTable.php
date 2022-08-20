@@ -55,8 +55,10 @@ class UsersDataTable extends DataTable
                     ->setTableId('users-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
+                    // ->orderBy(1)
+                    ->parameters([
+                        'order' => [0,'asc']
+                    ])
                     ->buttons(
                         Button::make('create'),
                         Button::make('export'),

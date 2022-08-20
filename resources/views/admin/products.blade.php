@@ -30,7 +30,7 @@
             <!-- Main row -->
             <div class="row mr-1">
                 <!-- Left col -->
-                <section class="col-lg-12 connectedSortable">
+                <section class="col-lg-12 connectedSortable mb-3">
                     <!-- Custom tabs (Charts with tabs)-->
                         {!! $dataTable -> table(['class' => 'table table-bordered table-striped']) !!}
                     <!-- /.card -->

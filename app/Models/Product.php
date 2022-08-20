@@ -21,4 +21,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class , 'cat_id');
     }
+
+    public function getProStockAttribute()
+    {
+        // call it with $product->pro_stock ;
+        return $this->stock == 0 ? "<span class='badge badge-secondary p-2 shadow-sm'>Empty</span>" : "<span class='badge badge-light p-2 shadow-sm'>{$this->stock}</span>"  ;
+    }
 }

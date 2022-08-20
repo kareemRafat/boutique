@@ -76,7 +76,7 @@
               <i class="nav-icon fab fa-product-hunt"></i>
               <p>
                 Products
-                <span class="right badge badge-danger">New</span>
+                <span class="right badge {{ request()->is('admin/products') ? 'badge-light' : 'badge-danger'}} ">New</span>
               </p>
             </a>
           </li>
