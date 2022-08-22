@@ -49,8 +49,8 @@
     <!-- /.content -->
 </div>
 
-{{-- @include('admin.modals.add-product') --}}
-<livewire:admin.product.product-add-modal>
+@include('admin.modals.product-modal')
+
 
 @endsection
 @push('custom-scripts')
