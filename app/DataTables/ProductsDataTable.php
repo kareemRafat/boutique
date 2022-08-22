@@ -72,7 +72,7 @@ class ProductsDataTable extends DataTable
                         Button::make('print'),
                         Button::make('reset'),
                         Button::make('reload')
-                    );
+                    ); // enable livewire integration
     }
 
     /**

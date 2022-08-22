@@ -31,6 +31,9 @@
             <div class="row mr-1">
                 <!-- Left col -->
                 <section class="col-lg-12 connectedSortable mb-3">
+                    <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#exampleModal">
+                        Add product
+                      </button>
                     <!-- Custom tabs (Charts with tabs)-->
                         {!! $dataTable -> table(['class' => 'table table-bordered table-striped']) !!}
                     <!-- /.card -->
@@ -46,10 +49,20 @@
     <!-- /.content -->
 </div>
 
+{{-- @include('admin.modals.add-product') --}}
+<livewire:admin.product.product-add-modal>
 
 @endsection
 @push('custom-scripts')
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     {!! $dataTable -> scripts() !!}
+    <script>
+        console.log('test');
+        window.addEventListener('close-modal', event => {
+            console.log('test');
+            $('#exampleModal').modal('hide');
+        })
+    </script>
+
 @endpush
