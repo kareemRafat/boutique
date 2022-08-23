@@ -31,7 +31,7 @@
             <div class="row mr-1">
                 <!-- Left col -->
                 <section class="col-lg-12 connectedSortable mb-3">
-                    <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#add-product-modal">
                         Add product
                       </button>
                     <!-- Custom tabs (Charts with tabs)-->
@@ -59,9 +59,12 @@
     {!! $dataTable -> scripts() !!}
     <script>
         console.log('test');
-        window.addEventListener('close-modal', event => {
-            console.log('test');
-            $('#exampleModal').modal('hide');
+        $('.add-product-form').submit(function(e){
+            e.preventDefault();
+            $('#add-product-modal').modal('hide');
+
+            // to reset data in datatables
+            $('table').dataTable().fnClearTable();
         })
     </script>
 

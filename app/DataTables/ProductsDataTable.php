@@ -2,15 +2,16 @@
 
 namespace App\DataTables;
 
+use Livewire\Livewire;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class ProductsDataTable extends DataTable
 {
@@ -64,7 +65,7 @@ class ProductsDataTable extends DataTable
                     ->minifiedAjax()
                     // ->orderBy(0 , 'ASC') // to sort id asc
                     ->parameters([
-                        'order' => [0,'asc']
+                        'order' => [0,'asc'],
                     ])
                     ->buttons(
                         Button::make('create'),
@@ -72,7 +73,7 @@ class ProductsDataTable extends DataTable
                         Button::make('print'),
                         Button::make('reset'),
                         Button::make('reload')
-                    ); // enable livewire integration
+                    );
     }
 
     /**

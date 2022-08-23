@@ -18,4 +18,5 @@
  <link rel="stylesheet" href="{{  asset('dashboard/plugins/daterangepicker/daterangepicker.css')}}">
  <!-- summernote -->
  <link rel="stylesheet" href="{{  asset('dashboard/plugins/summernote/summernote-bs4.min.css')}}">
+ <link rel="stylesheet" href="{{  asset('dashboard/dist/css/style.css') }}" >
  @stack('custom-styles')
