@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataTables\ProductsDataTable;
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\DataTables\ProductsDataTable;
 
 class ProductController extends Controller
 {
@@ -39,7 +40,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request);
+        if ($request->ajax()){
+
+            $newProduct = $request->validate([
+                'name' => 'required',
+                'price' => 'required',
+                'stock' => 'required',
+                'description' => 'required',
+                'category' => 'required',
+            ]);
+
+            Product::create($newProduct);
+
+            // return response()->json();
+        }
     }
 
     /**

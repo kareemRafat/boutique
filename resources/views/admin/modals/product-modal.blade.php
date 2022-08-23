@@ -26,11 +26,6 @@
                         <small class="text-danger font-weight-bold">xx</small>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">sale</label>
-                        <input name="sale" type="text" class="form-control" id="exampleFormControlInput1">
-                        <small class="text-danger font-weight-bold">xx</small>
-                    </div>
-                    <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
                         <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         <small class="text-danger font-weight-bold">xx</small>
