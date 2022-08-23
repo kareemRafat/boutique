@@ -13,35 +13,39 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1">name</label>
                         <input name="name" type="text" class="form-control" id="exampleFormControlInput1">
-                        <small class="text-danger font-weight-bold">xx</small>
+                        <small class="text-danger font-weight-bold input-name"></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">price</label>
-                        <input name="price" type="text" class="form-control" id="exampleFormControlInput1">
-                        <small class="text-danger font-weight-bold">xx</small>
+                        <input name="price" type="number" class="form-control" id="exampleFormControlInput1">
+                        <small class="text-danger font-weight-bold input-price"></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">stock</label>
-                        <input name="stock" type="text" class="form-control" id="exampleFormControlInput1">
-                        <small class="text-danger font-weight-bold">xx</small>
+                        <input name="stock" type="number" class="form-control" id="exampleFormControlInput1">
+                        <small class="text-danger font-weight-bold input-stock"></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
                         <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        <small class="text-danger font-weight-bold">xx</small>
+                        <small class="text-danger font-weight-bold input-description"></small>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Category</label>
-                        <select name="category" class="form-control" id="exampleFormControlSelect1">
+                        <select name="cat_id" class="form-control" id="exampleFormControlSelect1">
                             <option>Select Category</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
+                        <small class="text-danger font-weight-bold input-category"></small>
                     </div>
 
                 </div>
                 <div class="modal-footer">
+                    <div class="mySpinner">
+                        
+                    </div>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>

@@ -70,11 +70,7 @@
         $('.add-product-form').submit(function(e){
             e.preventDefault();
             let formData = new FormData(this);
-            // $('#add-product-modal').modal('hide');
 
-            // to reset data in datatables
-            // ajax.reload(callback = null , resetPaging = true)
-            // $('table').DataTable().ajax.reload(null , false);
 
             $.ajax({
                 method : 'post' ,
@@ -83,8 +79,33 @@
                 data : formData,
                 processData : false ,
                 contentType : false ,
+                beforeSend(){
+                    $('.mySpinner').html(`
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>`)
+                },
                 success(data){
-                    console.log(data)
+                    $('small').text('');
+                    $('.mySpinner').html('');
+
+                    $('#add-product-modal').modal('hide');
+
+                    //to reset data in datatables
+                    //ajax.reload(callback = null , resetPaging = true)
+                    $('table').DataTable().ajax.reload(null , false);
+                },
+                error(error,exception){
+                    $('small').text('');
+                    let keys = Object.keys(error.responseJSON.errors);
+                    let values = Object.values(error.responseJSON.errors);
+
+                    // to print the errors in the small element for each element
+                    keys.forEach((item , index)=> {
+                        let errors = values[index].join(',');
+                        $(`.input-${item}`).text(errors);
+                    })
+
                 }
             })
 

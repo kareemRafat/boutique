@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->integer('price'); // in cent
+            $table->string('name')->nullable();
+            $table->integer('price')->nullable(); // in cent
             $table->integer('stock')->default(0);
-            $table->text('description');
-            $table->foreignId('cat_id')->constrained('categories');
+            $table->text('description')->nullable();
+            $table->foreignId('cat_id')->nullable()->constrained('categories');
             $table->timestamps();
         });
     }

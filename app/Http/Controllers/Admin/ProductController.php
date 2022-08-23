@@ -47,12 +47,16 @@ class ProductController extends Controller
                 'price' => 'required',
                 'stock' => 'required',
                 'description' => 'required',
-                'category' => 'required',
+                'cat_id' => 'required',
             ]);
 
-            Product::create($newProduct);
+            $success = Product::create($newProduct);
+            if($success){
+                return response()->json(['message' => 'Product created successfully']);
+            }
 
-            // return response()->json();
+            return response()->json(['message' => 'something went wrong']);
+
         }
     }
 
