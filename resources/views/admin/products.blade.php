@@ -81,22 +81,34 @@
                 contentType : false ,
                 beforeSend(){
                     $('.mySpinner').html(`
-                                        <div class="spinner-border text-primary" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>`)
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>`)
+                    $('.modal-body').css('opacity', 0.5);
                 },
                 success(data){
                     $('small').text('');
                     $('.mySpinner').html('');
+                    $('.modal-body').css('opacity', 1);
 
+                    //close modal
                     $('#add-product-modal').modal('hide');
 
                     //to reset data in datatables
                     //ajax.reload(callback = null , resetPaging = true)
                     $('table').DataTable().ajax.reload(null , false);
+
+                    // empty inputs
+                    $('input , textarea').val('');
                 },
                 error(error,exception){
+
+                    console.log(error);
+
+                    $('.mySpinner').html('');
+                    $('.modal-body').css('opacity', 1);
                     $('small').text('');
+
                     let keys = Object.keys(error.responseJSON.errors);
                     let values = Object.values(error.responseJSON.errors);
 

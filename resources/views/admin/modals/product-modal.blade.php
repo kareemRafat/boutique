@@ -32,19 +32,19 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Category</label>
-                        <select name="cat_id" class="form-control" id="exampleFormControlSelect1">
-                            <option>Select Category</option>
+                        <select name="cat_id" class="form-control  id="exampleFormControlSelect1">
+                            <option value="">Select Category</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-                        <small class="text-danger font-weight-bold input-category"></small>
+                        <small class="text-danger font-weight-bold input-cat_id"></small>
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <div class="mySpinner">
-                        
+
                     </div>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
