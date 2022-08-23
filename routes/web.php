@@ -29,4 +29,5 @@ Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
     Route::view('/','admin.index')->name('main');// main page
     Route::get('/users', UserController::class)->name('users');
     Route::get('/products' ,[ProductController::class , 'index'])->name('products');
+    Route::post('/products' ,[ProductController::class , 'store'])->name('products.store');
 });

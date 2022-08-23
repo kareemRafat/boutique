@@ -1,7 +1,8 @@
 @extends('admin.layouts.app')
 @push('custom-styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
-@endpush
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @endpush
 
 @section('content')
 
@@ -58,14 +59,34 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     {!! $dataTable -> scripts() !!}
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <script>
         console.log('test');
         $('.add-product-form').submit(function(e){
             e.preventDefault();
-            $('#add-product-modal').modal('hide');
+            let formData = new FormData(this);
+            // $('#add-product-modal').modal('hide');
 
             // to reset data in datatables
             // ajax.reload(callback = null , resetPaging = true)
-            $('table').DataTable().ajax.reload(null , false);
+            // $('table').DataTable().ajax.reload(null , false);
+
+            $.ajax({
+                method : 'post' ,
+                url : "{{ route('admin.products.store') }}",
+                dataType : 'json',
+                data : formData,
+                processData : false ,
+                contentType : false ,
+                success(data){
+                    console.log(data)
+                }
+            })
 
         })
     </script>

@@ -1,5 +1,9 @@
 
 .product-add {
-    color : dodgerblue ;
-    font-weight : normal !important ;
+    color : rgb(64, 3, 121) ;
+    font-weight : 500 !important ;
+}
+
+small {
+    font-size: 18px;
 }

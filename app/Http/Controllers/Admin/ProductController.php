@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\ProductsDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,7 +16,9 @@ class ProductController extends Controller
      */
     public function index(ProductsDataTable $table)
     {
-        return $table->render('admin.products');
+        return $table->render('admin.products' , [
+            'categories'=> Category::all()
+        ]);
     }
 
     /**
@@ -36,7 +39,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($request);
     }
 
     /**
