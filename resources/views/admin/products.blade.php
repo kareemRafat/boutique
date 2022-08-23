@@ -64,7 +64,9 @@
             $('#add-product-modal').modal('hide');
 
             // to reset data in datatables
-            $('table').dataTable().fnClearTable();
+            // ajax.reload(callback = null , resetPaging = true)
+            $('table').DataTable().ajax.reload(null , false);
+
         })
     </script>
 

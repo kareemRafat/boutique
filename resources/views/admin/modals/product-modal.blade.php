@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="add-product-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <form action="" class="add-product-form">
                 <div class="modal-header">
