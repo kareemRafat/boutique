@@ -32,7 +32,7 @@
             <div class="row mr-1">
                 <!-- Left col -->
                 <section class="col-lg-12 connectedSortable mb-3">
-                    <button type="button" class="btn btn-primary mb-4" data-toggle="modal" data-target="#add-product-modal">
+                    <button type="button" data-route="{{ route('admin.products.store') }}" class="btn btn-primary mb-4"  data-toggle="modal" data-target="#add-product-modal">
                         Add product
                       </button>
                     <!-- Custom tabs (Charts with tabs)-->
@@ -65,63 +65,6 @@
             }
         });
     </script>
-    <script>
-        console.log('test');
-        $('.add-product-form').submit(function(e){
-            e.preventDefault();
-            let formData = new FormData(this);
-
-
-            $.ajax({
-                method : 'post' ,
-                url : "{{ route('admin.products.store') }}",
-                dataType : 'json',
-                data : formData,
-                processData : false ,
-                contentType : false ,
-                beforeSend(){
-                    $('.mySpinner').html(`
-                                    <div class="spinner-border text-primary" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>`)
-                    $('.modal-body').css('opacity', 0.5);
-                },
-                success(data){
-                    $('small').text('');
-                    $('.mySpinner').html('');
-                    $('.modal-body').css('opacity', 1);
-
-                    //close modal
-                    $('#add-product-modal').modal('hide');
-
-                    //to reset data in datatables
-                    //ajax.reload(callback = null , resetPaging = true)
-                    $('table').DataTable().ajax.reload(null , false);
-
-                    // empty inputs
-                    $('input , textarea').val('');
-                },
-                error(error,exception){
-
-                    console.log(error);
-
-                    $('.mySpinner').html('');
-                    $('.modal-body').css('opacity', 1);
-                    $('small').text('');
-
-                    let keys = Object.keys(error.responseJSON.errors);
-                    let values = Object.values(error.responseJSON.errors);
-
-                    // to print the errors in the small element for each element
-                    keys.forEach((item , index)=> {
-                        let errors = values[index].join(',');
-                        $(`.input-${item}`).text(errors);
-                    })
-
-                }
-            })
-
-        })
-    </script>
+    <script src="{{ asset('dashboard/js/add-product.js') }}"></script>
 
 @endpush

@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DataTables\ProductsDataTable;
+use App\Http\Requests\Admin\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -38,24 +39,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         if ($request->ajax()){
 
-            $newProduct = $request->validate([
-                'name' => 'required',
-                'price' => 'required',
-                'stock' => 'required',
-                'description' => 'required',
-                'cat_id' => 'required',
-            ]);
+            $newProduct = $request->validate();
 
             $success = Product::create($newProduct);
-            if($success){
-                return response()->json(['message' => 'Product created successfully']);
-            }
 
-            return response()->json(['message' => 'something went wrong']);
+            return response()->json(['message' => 'Product created successfully']);
 
         }
     }
