@@ -14,11 +14,11 @@ $('.add-product-form').submit(function(e){
         processData : false ,
         contentType : false ,
         beforeSend(){
-            $('.mySpinner').html(`
+            $('#add-product-modal .mySpinner').html(`
                             <div class="spinner-border text-primary" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>`)
-            $('.modal-body').css('opacity', 0.5);
+            $('#add-product-modal .modal-body').css('opacity', 0.5);
         },
         success(data){
 
@@ -33,6 +33,8 @@ $('.add-product-form').submit(function(e){
 
             // empty inputs
             $('input , textarea').val('');
+
+            flasher.success("Product added successfully");
         },
         error(error,exception){
 
@@ -44,16 +46,16 @@ $('.add-product-form').submit(function(e){
             // to print the errors in the small element for each element
             keys.forEach((item , index)=> {
                 let errors = values[index].join(',');
-                $(`.input-${item}`).text(errors);
+                $(`#add-product-modal .input-${item}`).text(errors);
             })
 
         }
     })
 
     function reset(){
-        $('small').text('');
-        $('.mySpinner').html('');
-        $('.modal-body').css('opacity', 1);
+        $('#add-product-modal small').text('');
+        $('#add-product-modal .mySpinner').html('');
+        $('#add-product-modal .modal-body').css('opacity', 1);
     }
 
 })

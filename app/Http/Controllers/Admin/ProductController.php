@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Flasher\Prime\FlasherInterface;
 use App\Http\Controllers\Controller;
 use App\DataTables\ProductsDataTable;
 use App\Http\Requests\Admin\ProductRequest;
@@ -81,7 +82,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(ProductRequest $request, $id , FlasherInterface $flasher)
     {
         if ($request->ajax()){
 

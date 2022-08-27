@@ -8,6 +8,8 @@ $(document).on('click' , '.update-product-btn' ,function(){
     let product_id = $(this).data('id');
     let editRoute = $(this).data('route');
 
+    reset();
+
 
     $.ajax({
         url : editRoute,
@@ -49,11 +51,13 @@ $(document).on('submit', '.update-product-form' ,function(e){
 
     e.preventDefault();
 
+
     let id = $('input[name="id"]').val();
 
     // send put request to update the product
     var formData = new FormData(this);
     // formData.append('_method','PUT');
+
 
     $.ajax({
         method : 'post' ,
@@ -62,11 +66,11 @@ $(document).on('submit', '.update-product-form' ,function(e){
         processData : false ,
         contentType : false ,
         beforeSend(){
-            $('.mySpinner').html(`
+            $('#update-product-modal .mySpinner').html(`
                             <div class="spinner-border text-secondary" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>`)
-            $('.modal-body').css('opacity', 0.5);
+            $('#update-product-modal .modal-body').css('opacity', 0.5);
         },
         success(data){
 
@@ -81,12 +85,14 @@ $(document).on('submit', '.update-product-form' ,function(e){
 
             // empty inputs
             $('input , textarea').val('');
+
+            flasher.success("Product updated successfully");
         },
         error(error){
 
             reset();
 
-            $('.myError').html(`<div class="text-danger">error happens : check the error upov</div>`);
+            $('#update-product-modal .myError').html(`<div class="text-danger">error happens : check the error upov</div>`);
 
 
             let keys = Object.keys(error.responseJSON.errors);
@@ -95,16 +101,16 @@ $(document).on('submit', '.update-product-form' ,function(e){
             // to print the errors in the small element for each element
             keys.forEach((item , index)=> {
                 let errors = values[index].join(',');
-                $(`.input-${item}`).text(errors);
+                $(`#update-product-modal .input-${item}`).text(errors);
             })
         }
     })
 
-    function reset(){
-        $('.myError').html(``)
-        $('small').text('');
-        $('.mySpinner').html('');
-        $('.modal-body').css('opacity', 1);
-    }
-
 })
+
+function reset(){
+    $('#update-product-modal .myError').html(``)
+    $('#update-product-modal small').text('');
+    $('#update-product-modal .mySpinner').html('');
+    $('#update-product-modal .modal-body').css('opacity', 1);
+}
