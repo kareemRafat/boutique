@@ -22,7 +22,7 @@ $(document).on('click' , '.update-product-btn' ,function(){
             // revert animation
             $('.modal-body').css('opacity', 1);
             $('#update-product-modal input , #update-product-modal textarea').removeAttr('disabled');
-            
+
             // print the data in it`s own input
             $('#update-product-modal input , #update-product-modal textarea').each((index ,item)=>{
                 $(item).val(data[item.name]);
@@ -34,9 +34,6 @@ $(document).on('click' , '.update-product-btn' ,function(){
                     $(item).attr('selected' , '');
                 }
             })
-
-            // add route to data-route attribute to the form itself
-            $('.update-product-form').attr('data-route' , `{{ route('admin.products.update' ,${product_id}) }}`)
 
         }
     })
@@ -50,17 +47,15 @@ $(document).on('click' , '.update-product-btn' ,function(){
 $(document).on('submit', '.update-product-form' , function(e){
 
     e.preventDefault();
-    
-    // send put request to update the product
-    let dataRoute = $(this).data('route');
-    let formData = new FormData(this);
 
-    // error here
-    console.log(dataRoute);
+    let id = $('input[name="id"]').val();
+
+    // send put request to update the product
+    let formData = new FormData(this);
 
     $.ajax({
         method : 'post' ,
-        url : dataRoute ,
+        url : `products` +'/'+ id ,
         dataType : 'json',
         data : formData,
         processData : false ,

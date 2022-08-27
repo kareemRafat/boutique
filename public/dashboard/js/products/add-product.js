@@ -6,6 +6,7 @@ $('.add-product-form').submit(function(e){
     // made because the js file dosn`t read "{{ route('admin.products.store') }}"
     let dateRoute = $('.add-new-btn').data('route');
 
+
     $.ajax({
         method : 'post' ,
         url : dateRoute,
