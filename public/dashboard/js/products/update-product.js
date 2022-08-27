@@ -36,7 +36,7 @@ $(document).on('click' , '.update-product-btn' ,function(){
             })
 
             // add route to data-route attribute to the form itself
-            $('.update-product-form').attr('data-route' , `{{ route('admin.products.update' , ${product_id} ) }}`)
+            $('.update-product-form').attr('data-route' , `{{ route('admin.products.update' ,${product_id}) }}`)
 
         }
     })
