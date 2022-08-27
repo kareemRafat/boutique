@@ -3,7 +3,6 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form class="update-product-form">
-                @method('PUT')
                 <input class="id" name="id" type="hidden">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">update product</h5>
@@ -45,6 +44,7 @@
 
                 </div>
                 <div class="modal-footer">
+                    <div class="myError font-weight-bold"></div>
                     <div class="mySpinner">
 
                     </div>

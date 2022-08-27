@@ -81,9 +81,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        return response()->json($request) ;
+        if ($request->ajax()){
+
+            $newProduct = $request->validated();
+
+            Product::find($id)->update($newProduct);
+
+            return response()->json(['message' => 'Product updated successfully']);
+        }
     }
 
     /**

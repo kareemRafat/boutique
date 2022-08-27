@@ -34,6 +34,6 @@ Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
         Route::get('/products' , 'index')->name('products');
         Route::post('/products' , 'store')->name('products.store');
         Route::get('/products/{id}' , 'edit')->name('products.edit');
-        Route::put('/products/{id}' , 'update')->name('products.update');
+        Route::post('/products/{id}' , 'update')->name('products.update');
     });
 });

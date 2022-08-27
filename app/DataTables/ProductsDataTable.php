@@ -66,7 +66,6 @@ class ProductsDataTable extends DataTable
                     // ->orderBy(0 , 'ASC') // to sort id asc
                     ->parameters([
                         'order' => [0,'asc'],
-                        'buttons' => ['excel']
                     ])
                     ->buttons(
                         Button::make('create'),
