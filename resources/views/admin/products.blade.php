@@ -32,7 +32,7 @@
             <div class="row mr-1">
                 <!-- Left col -->
                 <section class="col-lg-12 connectedSortable mb-3">
-                    <button type="button" data-route="{{ route('admin.products.store') }}" class="btn btn-primary mb-4"  data-toggle="modal" data-target="#add-product-modal">
+                    <button type="button" data-route="{{ route('admin.products.store') }}" class="btn btn-primary mb-4 add-new-btn"  data-toggle="modal" data-target="#add-product-modal">
                         Add product
                       </button>
                     <!-- Custom tabs (Charts with tabs)-->
@@ -50,7 +50,8 @@
     <!-- /.content -->
 </div>
 
-@include('admin.modals.product-modal')
+@include('admin.modals.products.add-modal')
+@include('admin.modals.products.update-modal')
 
 
 @endsection
@@ -65,6 +66,7 @@
             }
         });
     </script>
-    <script src="{{ asset('dashboard/js/add-product.js') }}"></script>
+    <script src="{{ asset('dashboard/js/products/add-product.js') }}"></script>
+    <script src="{{ asset('dashboard/js/products/update-product.js') }}"></script>
 
 @endpush

@@ -43,7 +43,7 @@ class ProductController extends Controller
     {
         if ($request->ajax()){
 
-            $newProduct = $request->validate();
+            $newProduct = $request->validated();
 
             $success = Product::create($newProduct);
 
@@ -71,7 +71,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        return response()->json(Product::findOrFail($id));
     }
 
     /**
@@ -83,7 +83,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $id ;
     }
 
     /**

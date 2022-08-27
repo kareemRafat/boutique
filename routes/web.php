@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\ProductController;
 */
 
 
-
+// design routes
 Route::controller(ShopController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('shop', 'shop')->name('shop');
@@ -27,7 +27,13 @@ Route::controller(ShopController::class)->group(function () {
 // admin dashboard routes
 Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
     Route::view('/','admin.index')->name('main');// main page
+    // users
     Route::get('/users', UserController::class)->name('users');
-    Route::get('/products' ,[ProductController::class , 'index'])->name('products');
-    Route::post('/products' ,[ProductController::class , 'store'])->name('products.store');
+    // products
+    Route::controller(ProductController::class)->group(function(){
+        Route::get('/products' , 'index')->name('products');
+        Route::post('/products' , 'store')->name('products.store');
+        Route::get('/products/{id}' , 'edit')->name('products.edit');
+        Route::post('/products/{id}' , 'update')->name('products.update');
+    });
 });

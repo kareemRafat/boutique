@@ -1,12 +1,10 @@
 
-console.log('test');
-
 $('.add-product-form').submit(function(e){
     e.preventDefault();
     let formData = new FormData(this);
 
-    // made because the js file dosn`t read "{{ route('admin.products.store') }}" 
-    let dateRoute = $(this).data('route');
+    // made because the js file dosn`t read "{{ route('admin.products.store') }}"
+    let dateRoute = $('.add-new-btn').data('route');
 
     $.ajax({
         method : 'post' ,
@@ -23,7 +21,7 @@ $('.add-product-form').submit(function(e){
             $('.modal-body').css('opacity', 0.5);
         },
         success(data){
-            
+
             reset();
 
             //close modal
@@ -39,7 +37,7 @@ $('.add-product-form').submit(function(e){
         error(error,exception){
 
             reset();
-            
+
             let keys = Object.keys(error.responseJSON.errors);
             let values = Object.values(error.responseJSON.errors);
 

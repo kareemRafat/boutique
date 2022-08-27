@@ -1,6 +1,18 @@
 <div class="btn-group btn-group-sm">
-    <a class="btn btn-primary" href="" data-id={{ $id }}>Edit</a>
-    <a class="btn btn-danger" href="" data-id={{ $id }}>Delete</a>
+    <button
+        type="button"
+        data-route="{{ route('admin.products.edit', $id) }}"
+        data-toggle="modal"
+        data-target="#update-product-modal"
+        class="btn btn-primary update-product-btn"
+        data-id={{ $id }}
+    >Edit</button>
+    <button
+        type="button"
+        {{-- data-route="{{ route('admin.products.delete') }}" --}}
+        data-toggle="modal"
+        data-target="#"
+        class="btn btn-danger"
+        data-id={{ $id }}
+    >Delete</button>
 </div>
-
-
