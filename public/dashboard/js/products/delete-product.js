@@ -12,7 +12,7 @@ $(document).on('click','.delete-product-btn',function(){
     $.ajax({
         method : 'delete' ,
         url : `products/`+ id ,
-        data : {_method : 'delete'},
+        // data : {_method : 'delete'},
         beforeSend(){
             $('#delete-product-modal .mySpinner').html(`
                             <div class="spinner-border text-secondary" role="status">
