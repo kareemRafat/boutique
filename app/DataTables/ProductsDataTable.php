@@ -37,6 +37,9 @@ class ProductsDataTable extends DataTable
             ->addColumn('created_at', function(Product $product){
                 return $product -> created_at -> diffForHumans() ;
             })
+            ->addColumn('updated_at', function(Product $product){
+                return $product -> updated_at -> diffForHumans() ;
+            })
             ->rawColumns(['stock' , 'action']) // to not escape tags
             ->setRowId('id');
     }
@@ -91,6 +94,7 @@ class ProductsDataTable extends DataTable
             Column::make('stock'),
             Column::make('cat_id')->title('Category'),
             Column::make('created_at'),
+            Column::make('updated_at'),
 
             Column::computed('action')
                   ->exportable(false)
