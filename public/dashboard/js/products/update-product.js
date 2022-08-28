@@ -55,6 +55,7 @@ $(document).on('submit', '.update-product-form' ,function(e){
 
     // send put request to update the product
     var formData = new FormData(this);
+    formData.append('_method','put');
 
     $.ajax({
         method : 'post' ,

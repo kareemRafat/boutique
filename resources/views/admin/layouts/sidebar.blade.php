@@ -72,7 +72,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('admin.products') }}" class="nav-link {{ request()->is('admin/products') ? 'active' : ''}}">
+            <a href="{{ route('admin.products.index') }}" class="nav-link {{ request()->is('admin/products') ? 'active' : ''}}">
               <i class="nav-icon fab fa-product-hunt"></i>
               <p>
                 Products

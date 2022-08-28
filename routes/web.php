@@ -31,13 +31,33 @@ Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
 
     // users
     Route::get('/users', UserController::class)->name('users');
-    
+
     // products
-    Route::controller(ProductController::class)->group(function(){
-        Route::get('/products' , 'index')->name('products');
-        Route::post('/products' , 'store')->name('products.store');
-        Route::get('/products/{id}' , 'edit')->name('products.edit');
-        Route::post('/products/{id}' , 'update')->name('products.update');
-        Route::delete('/products/{id}' , 'destroy')->name('products.destroy');
-    });
+    Route::resource('/products', ProductController::class);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route::resource('/products', ProductController::class);
+
+// products
+    // Route::controller(ProductController::class)->group(function(){
+    //     Route::get('/products' , 'index')->name('products.index');
+    //     Route::post('/products' , 'store')->name('products.store');
+    //     Route::get('/products/{id}' , 'edit')->name('products.edit');
+    //     Route::put('/products/{id}' , 'update')->name('products.update');
+    //     Route::delete('/products/{id}' , 'destroy')->name('products.destroy');
+    // });
