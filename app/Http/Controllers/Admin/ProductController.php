@@ -9,9 +9,12 @@ use Flasher\Prime\FlasherInterface;
 use App\Http\Controllers\Controller;
 use App\DataTables\ProductsDataTable;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Http\Traits\File;
+use App\Models\Image;
 
 class ProductController extends Controller
 {
+    use File ;
     /**
      * Display a listing of the resource.
      *
@@ -47,6 +50,13 @@ class ProductController extends Controller
             $newProduct = $request->validated();
 
             $success = Product::create($newProduct);
+
+            //Upload image and insert to image table
+            $this->upload_file(
+                $request->file('image'),
+                $request->name,
+                $success->id
+            );
 
             return response()->json(['message' => 'Product created successfully']);
 
@@ -103,7 +113,9 @@ class ProductController extends Controller
     public function destroy($id)
     {
         if (request()->ajax()){
+
             Product::find($id)->delete();
+
         }
     }
 }

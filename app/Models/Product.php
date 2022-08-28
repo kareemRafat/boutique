@@ -29,4 +29,12 @@ class Product extends Model
         // call it with $product->pro_stock ;
         return $this->stock == 0 ? "<span class='badge badge-secondary p-2 shadow-sm'>Empty</span>" : "<span class='badge badge-light p-2 shadow-sm'>{$this->stock}</span>"  ;
     }
+
+    /**
+     * Get the post's image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
