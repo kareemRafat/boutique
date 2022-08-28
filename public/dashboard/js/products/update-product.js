@@ -10,7 +10,6 @@ $(document).on('click' , '.update-product-btn' ,function(){
 
     reset();
 
-
     $.ajax({
         url : editRoute,
         method : 'get' ,
@@ -56,8 +55,6 @@ $(document).on('submit', '.update-product-form' ,function(e){
 
     // send put request to update the product
     var formData = new FormData(this);
-    // formData.append('_method','PUT');
-
 
     $.ajax({
         method : 'post' ,

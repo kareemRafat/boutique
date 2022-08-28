@@ -52,6 +52,7 @@
 
 @include('admin.modals.products.add-modal')
 @include('admin.modals.products.update-modal')
+@include('admin.modals.products.delete-modal')
 
 
 @endsection
@@ -69,5 +70,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.1.0/dist/flasher.min.js"></script>
     <script src="{{ asset('dashboard/js/products/add-product.js') }}"></script>
     <script src="{{ asset('dashboard/js/products/update-product.js') }}"></script>
+    <script src="{{ asset('dashboard/js/products/delete-product.js') }}"></script>
 
 @endpush

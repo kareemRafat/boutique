@@ -82,7 +82,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id , FlasherInterface $flasher)
+    public function update(ProductRequest $request, $id)
     {
         if ($request->ajax()){
 
@@ -102,6 +102,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (request()->ajax()){
+            Product::find($id)->delete();
+        }
     }
 }

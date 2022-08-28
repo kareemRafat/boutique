@@ -1,7 +1,7 @@
 <div class="btn-group btn-group-sm">
     <button
+         data-route="{{ route('admin.products.edit', $id) }}"
         type="button"
-        data-route="{{ route('admin.products.edit', $id) }}"
         data-toggle="modal"
         data-target="#update-product-modal"
         class="btn btn-primary update-product-btn"
@@ -9,10 +9,10 @@
     >Edit</button>
     <button
         type="button"
-        {{-- data-route="{{ route('admin.products.delete') }}" --}}
+        {{-- data-route="{{ route('admin.products.destroy', $id) }}" --}}
         data-toggle="modal"
-        data-target="#"
-        class="btn btn-danger"
+        data-target="#delete-product-modal"
+        class="btn btn-danger del-btn"
         data-id={{ $id }}
     >Delete</button>
 </div>

@@ -35,5 +35,6 @@ Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
         Route::post('/products' , 'store')->name('products.store');
         Route::get('/products/{id}' , 'edit')->name('products.edit');
         Route::post('/products/{id}' , 'update')->name('products.update');
+        Route::delete('/products/{id}' , 'destroy')->name('products.destroy');
     });
 });
