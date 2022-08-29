@@ -9,7 +9,6 @@
     >Edit</button>
     <button
         type="button"
-        {{-- data-route="{{ route('admin.products.destroy', $id) }}" --}}
         data-toggle="modal"
         data-target="#delete-product-modal"
         class="btn btn-danger del-btn"

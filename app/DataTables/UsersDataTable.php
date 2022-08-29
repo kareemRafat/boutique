@@ -57,7 +57,11 @@ class UsersDataTable extends DataTable
                     ->minifiedAjax()
                     // ->orderBy(1)
                     ->parameters([
-                        'order' => [0,'asc']
+                        'order' => [0,'asc'] ,
+                        "language"=> [
+                            "emptyTable" => "No users registered",
+                            "zeroRecords" => "No records to display"
+                        ]
                     ])
                     ->buttons(
                         Button::make('create'),

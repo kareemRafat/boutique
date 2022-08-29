@@ -34,7 +34,6 @@ class ProductsDataTable extends DataTable
             ->addColumn('image', function(Product $product){
                 $img = asset("storage/products/{$product->name}/{$product->image-> name}");
                 return "<img class='rounded-circle' style='width:40px;height:40px' src='{$img}'/>"  ;
-
             })
             ->addColumn('cat_id', function(Product $product){
                 return $product -> category -> name  ;
