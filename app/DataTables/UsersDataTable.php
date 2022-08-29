@@ -22,6 +22,7 @@ class UsersDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        
         return (new EloquentDataTable($query))
             // ->addColumn('action', '<span>b</span>')
             ->addColumn('created_at', function(User $user){
@@ -59,8 +60,9 @@ class UsersDataTable extends DataTable
                     ->parameters([
                         'order' => [0,'asc'] ,
                         "language"=> [
+                            // when table is empty and no search data
                             "emptyTable" => "No users registered",
-                            "zeroRecords" => "No records to display"
+                            "zeroRecords" => "No records found"
                         ]
                     ])
                     ->buttons(

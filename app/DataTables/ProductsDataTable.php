@@ -23,6 +23,9 @@ class ProductsDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        //eager loading
+        // $query= Product::with('category');
+
         return (new EloquentDataTable($query))
             ->addColumn('action', 'admin.buttons.products-group')
             ->addColumn('price', function(Product $product){
@@ -32,7 +35,7 @@ class ProductsDataTable extends DataTable
                 return $product -> pro_stock  ;
             })
             ->addColumn('image', function(Product $product){
-                $img = asset("storage/products/{$product->name}/{$product->image-> name}");
+                $img = asset("storage/products/{$product->name}/{$product->image->name}");
                 return "<img class='rounded-circle' style='width:40px;height:40px' src='{$img}'/>"  ;
             })
             ->addColumn('cat_id', function(Product $product){
@@ -73,6 +76,11 @@ class ProductsDataTable extends DataTable
                     // ->orderBy(0 , 'ASC') // to sort id asc
                     ->parameters([
                         'order' => [0,'asc'],
+                        "language"=> [
+                            // when table is empty and no search data
+                            "emptyTable" => "No users registered",
+                            "zeroRecords" => "No records found"
+                        ]
                     ])
                     ->buttons(
                         Button::make('create'),
