@@ -50,13 +50,12 @@ class ProductController extends Controller
 
             $newProduct = $request->validated();
 
-            $success = Product::create($newProduct);
+            $newProduct = Product::create($newProduct);
 
             //Upload image and insert to image table
             $this->upload_file(
                 $request->file('image'),
-                $request->name,
-                $success->id // last inserted id
+                $newProduct // send the new product object
             );
 
             return response()->json(['message' => 'Product created successfully']);
@@ -105,9 +104,9 @@ class ProductController extends Controller
                 //Upload image and insert to image table
                 $this->upload_file(
                     $request->file('image'),
-                    $request->name,
-                    $product->id
+                    $product // send the product object
                 );
+
             }
 
             return response()->json(['message' => 'Product updated successfully']);
