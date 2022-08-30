@@ -34,7 +34,7 @@
                           <input name="image" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                           <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
-                      </div>
+                    </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
                         <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>

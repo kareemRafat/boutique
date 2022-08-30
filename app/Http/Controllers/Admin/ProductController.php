@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
+use App\Http\Traits\File;
 use Illuminate\Http\Request;
 use Flasher\Prime\FlasherInterface;
 use App\Http\Controllers\Controller;
 use App\DataTables\ProductsDataTable;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\ProductRequest;
-use App\Http\Traits\File;
-use App\Models\Image;
 
 class ProductController extends Controller
 {
@@ -55,7 +56,7 @@ class ProductController extends Controller
             $this->upload_file(
                 $request->file('image'),
                 $request->name,
-                $success->id
+                $success->id // last inserted id
             );
 
             return response()->json(['message' => 'Product created successfully']);
@@ -92,13 +93,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
         if ($request->ajax()){
 
             $newProduct = $request->validated();
 
-            Product::find($id)->update($newProduct);
+            $product->update($newProduct);
+
+            if($request->has('image')){
+                //Upload image and insert to image table
+                $this->upload_file(
+                    $request->file('image'),
+                    $request->name,
+                    $product->id
+                );
+            }
 
             return response()->json(['message' => 'Product updated successfully']);
         }
@@ -110,11 +120,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
         if (request()->ajax()){
 
-            Product::find($id)->delete();
+            $product->delete();
+
+            $image = Image::where('imageable_id' , $product->id );
+
+            $image->delete();
+
+            Storage::deleteDirectory("products/{$product->name}");
 
         }
     }

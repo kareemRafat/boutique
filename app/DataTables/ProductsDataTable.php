@@ -78,7 +78,7 @@ class ProductsDataTable extends DataTable
                         'order' => [0,'asc'],
                         "language"=> [
                             // when table is empty and no search data
-                            "emptyTable" => "No users registered",
+                            "emptyTable" => "No products found",
                             "zeroRecords" => "No records found"
                         ]
                     ])
