@@ -41,7 +41,6 @@ $('.add-product-form').submit(function(e){
             flasher.success("Product added successfully");
         },
         error(error,exception){
-
             reset();
 
             let keys = Object.keys(error.responseJSON.errors);
