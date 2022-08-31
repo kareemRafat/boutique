@@ -36,6 +36,7 @@
                           <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                     </div>
+                    <small class="text-danger font-weight-bold input-image"></small>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Description</label>
                         <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
