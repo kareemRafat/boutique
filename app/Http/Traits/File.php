@@ -32,7 +32,6 @@ trait File {
         $newImgName = $this->storeImg();
 
         // insert in image plymorph table
-        // switch($request->method())
         Image::create([
             'name' => $newImgName ,
             'imageable_type'=> 'App\Models\Product',

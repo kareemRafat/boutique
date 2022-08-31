@@ -36,7 +36,7 @@
                         Add product
                       </button>
                     <!-- Custom tabs (Charts with tabs)-->
-                        {!! $dataTable -> table(['class' => 'table table-bordered table-striped']) !!}
+                        {!! $dataTable -> table(['class' => 'table table-bordered table-striped pro-table']) !!}
                     <!-- /.card -->
                 </section>
                 <!-- /.Left col -->

@@ -26,9 +26,9 @@ $(document).on('click','.delete-product-btn',function(){
 
             //to reset data in datatables
             //ajax.reload(callback = null , resetPaging = true)
-            $('table').DataTable().ajax.reload(null , false);
+            $('table.pro-table').DataTable().ajax.reload(null , false);
 
-            flasher.success("Product Deleted successfully");
+            flasher.info("Product Deleted successfully");
 
             $('#delete-product-modal .mySpinner').html('');
         }

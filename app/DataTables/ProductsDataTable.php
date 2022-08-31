@@ -24,7 +24,7 @@ class ProductsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         //eager loading
-        // $query= Product::with('category');
+        $query= Product::with(['category','image']);
 
         return (new EloquentDataTable($query))
             ->addColumn('action', 'admin.buttons.products-group')
