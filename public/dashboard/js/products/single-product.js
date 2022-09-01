@@ -10,10 +10,14 @@ $(document).on('click' , '.pro-table .product-name' , function(){
         success(data){
             handleResponse(data);
         },
-    })
+        beforeSend(){
+            $('#single-product-modal .overlay').css(`display` , 'flex');
+        }
+    }) // end ajax
 
     function handleResponse(data){
         var id = 0 ;
+
         $('#single-product-modal .image-table tbody').html('');
         $('#single-product-modal .desc-tab').text(data.desc);
         data.images.forEach(item => {
@@ -33,7 +37,7 @@ $(document).on('click' , '.pro-table .product-name' , function(){
                 </tr>
             `)
         })
+        $('#single-product-modal .overlay').css(`display` , 'none');
     }
-
 
 })
