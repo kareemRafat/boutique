@@ -50,6 +50,7 @@
     <!-- /.content -->
 </div>
 
+@include('admin.modals.products.single-product-modal')
 @include('admin.modals.products.add-modal')
 @include('admin.modals.products.update-modal')
 @include('admin.modals.products.delete-modal')
@@ -71,5 +72,6 @@
     <script src="{{ asset('dashboard/js/products/add-product.js') }}"></script>
     <script src="{{ asset('dashboard/js/products/update-product.js') }}"></script>
     <script src="{{ asset('dashboard/js/products/delete-product.js') }}"></script>
+    <script src="{{ asset('dashboard/js/products/single-product.js') }}"></script>
 
 @endpush

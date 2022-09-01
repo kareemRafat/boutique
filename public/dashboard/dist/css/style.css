@@ -7,3 +7,9 @@
 small {
     font-size: 15px;
 }
+
+.product-name {
+    color:dodgerblue;
+    cursor: pointer;
+    font-weight: 500;
+}

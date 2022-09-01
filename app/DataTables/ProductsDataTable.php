@@ -24,19 +24,25 @@ class ProductsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         //eager loading
-        $query= Product::with(['category','image']);
+        $query= Product::with('category');
+
+
 
         return (new EloquentDataTable($query))
             ->addColumn('action', 'admin.buttons.products-group')
+            ->addColumn('name', function(Product $product){
+                return "<span
+                        class='product-name'
+                        data-toggle='modal'
+                        data-target='#single-product-modal'
+                        data-id='{$product->id}'
+                        >{$product->name}</span>"  ;
+            })
             ->addColumn('price', function(Product $product){
                 return "$". number_format($product->price/100, 2)  ;
             })
             ->addColumn('stock', function(Product $product){
                 return $product -> pro_stock  ;
-            })
-            ->addColumn('image', function(Product $product){
-                $img = asset("storage/products/{$product->name}/{$product->image->name}");
-                return "<img class='rounded-circle' style='width:40px;height:40px' src='{$img}'/>"  ;
             })
             ->addColumn('cat_id', function(Product $product){
                 return $product -> category -> name  ;
@@ -47,7 +53,7 @@ class ProductsDataTable extends DataTable
             ->addColumn('updated_at', function(Product $product){
                 return $product -> updated_at -> diffForHumans() ;
             })
-            ->rawColumns(['stock' , 'action' , 'image']) // to not escape tags
+            ->rawColumns(['stock' , 'action' , 'name']) // to not escape tags
             ->setRowId('id');
     }
 
@@ -104,7 +110,6 @@ class ProductsDataTable extends DataTable
             Column::make('name'),
             Column::make('price'),
             Column::make('stock'),
-            Column::make('image'),
             Column::make('cat_id')->title('Category'),
             Column::make('created_at'),
             Column::make('updated_at'),
