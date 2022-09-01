@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Product;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductRequest extends FormRequest
@@ -48,10 +50,17 @@ class ProductRequest extends FormRequest
                         'image|
                          mimes:jpeg,png,jpg,gif,svg|
                          max:2048|
-                         required_if:name,===,'.request('name'),
+                         required_unless:name,'.Product::find($this->id)->name
                 ];
                 break;
         }
 
+    }
+
+    public function messages()
+    {
+        return [
+            'image.required_unless' => 'image is required when name changes'
+        ];
     }
 }
