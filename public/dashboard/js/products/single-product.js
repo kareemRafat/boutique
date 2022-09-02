@@ -22,7 +22,7 @@ $(document).on('click' , '.pro-table .product-name' , function(){
         $('#single-product-modal .desc-tab').text(data.desc);
         data.images.forEach(item => {
             $('#single-product-modal .image-table tbody').append(`
-                <tr>
+                <tr class='row${item.id}'>
                     <td scope="row">${++id}</td>
                     <td>${item.name}</td>
                     <td><div class="btn-group btn-group-sm">

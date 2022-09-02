@@ -12,16 +12,22 @@ $(document).on('click' , '.pro-table .product-name' , function(){
 $(document).on('click' , '#single-product-modal .del-img-btn' , function(){
     imageId = $(this).data('id');
 
+
 })
 
 
 // confirm image delete
 $(document).on('click' , '#delete-image-modal .delete-image-btn' , function(){
+
     $.ajax({
         method : 'post' ,
         url : `products/${proId}/image/${imageId}`,
         success(data){
-            console.log(data);
+            $('#delete-image-modal').modal('hide');
+            flasher.info("image Deleted successfully");
+            //delete the removed image row when confirm delete
+            $('#single-product-modal .row'+imageId).remove();
+
         }
     })
 

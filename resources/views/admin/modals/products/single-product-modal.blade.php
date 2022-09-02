@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="single-product-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl"> /* modal-dialog-centered */
+  <div class="modal-dialog modal-xl"><!-- modal-dialog-centered -->
       <div class="modal-content">
                 <div class="overlay">
                     <i class="fas fa-2x fa-sync fa-spin"></i>
