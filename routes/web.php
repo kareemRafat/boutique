@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Design\ShopController;
-use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,19 +22,6 @@ Route::controller(ShopController::class)->group(function () {
     Route::get('detail/{id}', 'show')->name('shop.details');
 });
 
-// admin dashboard routes
-Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
-    // main page
-    Route::view('/','admin.index')->name('main');
-
-    // users
-    Route::get('/users', UserController::class)->name('users');
-
-    // products
-    Route::post('/products/{product}/image/{image}' , [ ProductController::class , 'destroy_image']);
-    Route::post('/products/{product}/image' , [ ProductController::class , 'update_image']);
-    Route::resource('/products', ProductController::class);
-});
 
 
 
@@ -49,17 +34,3 @@ Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
 
 
 
-
-
-
-
-// Route::resource('/products', ProductController::class);
-
-// products
-    // Route::controller(ProductController::class)->group(function(){
-    //     Route::get('/products' , 'index')->name('products.index');
-    //     Route::post('/products' , 'store')->name('products.store');
-    //     Route::get('/products/{id}' , 'edit')->name('products.edit');
-    //     Route::put('/products/{id}' , 'update')->name('products.update');
-    //     Route::delete('/products/{id}' , 'destroy')->name('products.destroy');
-    // });
