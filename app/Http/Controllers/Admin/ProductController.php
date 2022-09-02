@@ -15,7 +15,7 @@ use App\Http\Requests\Admin\ProductRequest;
 
 class ProductController extends Controller
 {
-    use File ;
+    use File;
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +23,8 @@ class ProductController extends Controller
      */
     public function index(ProductsDataTable $table)
     {
-        return $table->render('admin.products' , [
-            'categories'=> Category::all()
+        return $table->render('admin.products', [
+            'categories' => Category::all()
         ]);
     }
 
@@ -46,7 +46,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        if ($request->ajax()){
+        if ($request->ajax()) {
 
             $newProduct = $request->validated();
 
@@ -59,7 +59,6 @@ class ProductController extends Controller
             );
 
             return response()->json(['message' => 'Product created successfully']);
-
         }
     }
 
@@ -72,8 +71,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         return response()->json([
-            'desc' => $product->description ,
-            'images' => Image::where('imageable_id' , $product->id)->get()
+            'desc' => $product->description,
+            'images' => Image::where('imageable_id', $product->id)->get()
         ]);
     }
 
@@ -97,19 +96,18 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        if ($request->ajax()){
+        if ($request->ajax()) {
 
             $newProduct = $request->validated();
 
             $product->update($newProduct);
 
-            if($request->has('image')){
+            if ($request->has('image')) {
                 //Upload image and insert to image table
                 $this->upload_file(
                     $request->file('image'),
                     $product // send the product object
                 );
-
             }
 
             return response()->json(['message' => 'Product updated successfully']);
@@ -124,23 +122,31 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if (request()->ajax()){
+        if (request()->ajax()) {
 
             $product->delete();
 
-            $image = Image::where('imageable_id' , $product->id );
+            $image = Image::where('imageable_id', $product->id);
 
             $image->delete();
 
             Storage::deleteDirectory("products/{$product->name}");
-
         }
     }
 
-    public function destroy_image(Product $product , Image $image)
+    /**
+     * Remove the specified image from storage and database.
+     *
+     */
+    public function destroy_image(Product $product, Image $image)
     {
         $image->delete();
         Storage::delete("products/{$product->name}/{$image->name}");
 
+        // check if the directory get empty after deleteing the image
+        $folderFilesCount = count(Storage::files("products/{$product->name}"));
+        if ($folderFilesCount == 0) {
+            Storage::deleteDirectory("products/{$product->name}");
+        }
     }
 }

@@ -20,6 +20,13 @@ $(document).on('click' , '.pro-table .product-name' , function(){
 
         $('#single-product-modal .image-table tbody').html('');
         $('#single-product-modal .desc-tab').text(data.desc);
+        if(data.images.length == 0) {
+            $('#single-product-modal .image-table tbody').html(`
+                <tr>
+                    <td class="text-center py-2" colspan="3"> No Images Found </td>
+                </tr>
+            `)
+        }
         data.images.forEach(item => {
             $('#single-product-modal .image-table tbody').append(`
                 <tr class='row${item.id}'>
