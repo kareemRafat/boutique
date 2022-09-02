@@ -37,7 +37,6 @@ $('.add-product-form').submit(function(e){
         },
         error(error,exception){
 
-            console.log(error);
             reset();
 
             let keys = Object.keys(error.responseJSON.errors);
@@ -49,8 +48,7 @@ $('.add-product-form').submit(function(e){
                 $(`#add-product-modal .input-${item}`).text(errors);
 
                 if(item.includes('image')) {
-                    console.log(item.slice(0,5));
-                    $(`#add-product-modal .input-${item.slice(0,5)}`).append(errors);
+                    $(`#add-product-modal .input-image`).text('please check the images sizes and extensions');
                 }
 
             })
