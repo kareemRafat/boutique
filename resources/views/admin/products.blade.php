@@ -53,7 +53,7 @@
 @include('admin.modals.products.single-product-modal')
 @include('admin.modals.products.add-modal')
 @include('admin.modals.products.update-modal')
-@include('admin.modals.products.delete-modal')
+@include('admin.modals.products.delete-modal'){{-- delete product and delete image modals  --}}
 
 
 @endsection
@@ -73,5 +73,6 @@
     <script src="{{ asset('dashboard/js/products/update-product.js') }}"></script>
     <script src="{{ asset('dashboard/js/products/delete-product.js') }}"></script>
     <script src="{{ asset('dashboard/js/products/single-product.js') }}"></script>
+    <script src="{{ asset('dashboard/js/products/delete-image.js') }}"></script>
 
 @endpush

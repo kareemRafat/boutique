@@ -13,5 +13,6 @@
         data-target="#delete-product-modal"
         class="btn btn-danger del-btn"
         data-id={{ $id }}
+        data-name={{ $name }}
     >Delete</button>
 </div>

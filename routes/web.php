@@ -33,6 +33,7 @@ Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
     Route::get('/users', UserController::class)->name('users');
 
     // products
+    Route::post('/products/{product}/image/{image}' , [ ProductController::class , 'destroy_image']);
     Route::resource('/products', ProductController::class);
 });
 

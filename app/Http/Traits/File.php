@@ -43,16 +43,16 @@ trait File {
     public function updateImg()
     {
         // delete the old image when update from disk
-        Storage::disk('public')->delete("products/{$this->product->name}/{$this->product->image->name}");
+        // Storage::disk('public')->delete("products/{$this->product->name}/{$this->product->image->name}");
 
         $newImgName = $this->storeImg();
 
         // update in image plymorph table
-        $this->product->image->update([
-            'name' => $newImgName ,
-            'imageable_type'=> 'App\Models\Product',
-            'imageable_id' => $this->product->id
-        ]);
+        // $this->product->image->update([
+        //     'name' => $newImgName ,
+        //     'imageable_type'=> 'App\Models\Product',
+        //     'imageable_id' => $this->product->id
+        // ]);
     }
 
 

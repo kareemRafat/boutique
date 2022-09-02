@@ -4,6 +4,13 @@ var id = 0 ;
 
 $(document).on('click' , '.del-btn' , function(){
     id = $(this).data('id');
+    product_name = $(this).data('name');
+    $('#delete-product-modal .modal-body').html(`
+        are you sure you want to delete product
+                <span class="ml-1 text-danger font-weight-bold">
+                    ${product_name}
+                </span>
+    `)
 })
 
 

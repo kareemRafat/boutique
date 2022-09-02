@@ -59,9 +59,6 @@
                   </div>
               </div>
               <div class="modal-footer">
-                  <div class="mySpinner">
-
-                  </div>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-danger delete-product-btn">confirm</button>
               </div>

@@ -29,8 +29,9 @@ $(document).on('click' , '.pro-table .product-name' , function(){
                         <button
                             type="button"
                             data-toggle="modal"
-                            data-target="#"
-                            class="btn btn-danger del-btn"
+                            data-target="#delete-image-modal"
+                            class="btn btn-danger del-img-btn"
+                            data-id="${item.id}"
                         >Delete</button>
                     </div>
                     </td>
