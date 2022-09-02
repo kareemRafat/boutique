@@ -36,6 +36,8 @@ $('.add-product-form').submit(function(e){
             flasher.success("Product added successfully");
         },
         error(error,exception){
+
+            console.log(error);
             reset();
 
             let keys = Object.keys(error.responseJSON.errors);
@@ -45,6 +47,12 @@ $('.add-product-form').submit(function(e){
             keys.forEach((item , index)=> {
                 let errors = values[index].join(',');
                 $(`#add-product-modal .input-${item}`).text(errors);
+
+                if(item.includes('image')) {
+                    console.log(item.slice(0,5));
+                    $(`#add-product-modal .input-${item.slice(0,5)}`).append(errors);
+                }
+
             })
 
         }

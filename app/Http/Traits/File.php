@@ -3,8 +3,6 @@
 namespace App\Http\Traits;
 
 use App\Models\Image;
-use App\Models\Product;
-use Illuminate\Support\Facades\Storage;
 
 trait File
 {
