@@ -10,7 +10,7 @@ $(document).on('submit' , '#single-product-modal .update-img-form' , function(e)
 
     e.preventDefault();
 
-    var product_id = $(this).data('proid');
+    var product_id = localStorage.getItem('id');
 
     $.ajax({
         method : 'post',
@@ -19,26 +19,34 @@ $(document).on('submit' , '#single-product-modal .update-img-form' , function(e)
         processData : false ,
         contentType : false ,
         success(data){
-            console.log(data);
-            $('#single-product-modal .image-table tbody').append(`
-                <tr class='row${data.img.id}'>
-                    <td scope="row">${++id}</td>
-                    <td>
-                        <img style="width:100px" src="${data.img.path}" />
-                    </td>
-                    <td><div class="btn-group btn-group-sm">
-                        <button
-                            type="button"
-                            data-toggle="modal"
-                            data-target="#delete-image-modal"
-                            class="btn btn-danger del-img-btn"
-                            data-id="${data.img.id}"
-                        >Delete</button>
-                    </div>
-                    </td>
-                </tr>
-            `)
+            appendTableRow(data);
         }
     })
+
+    function appendTableRow(data){
+        $('#single-product-modal .image-table tbody .notFound').remove();
+        $('#single-product-modal .image-table tbody').append(`
+            <tr class='row${data.img.id}'>
+                <td scope="row">${getLastId()}</td>
+                <td>
+                    <img style="width:100px" src="${data.img.path}" />
+                </td>
+                <td><div class="btn-group btn-group-sm">
+                    <button
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#delete-image-modal"
+                        class="btn btn-danger del-img-btn"
+                        data-id="${data.img.id}"
+                    >Delete</button>
+                </div>
+                </td>
+            </tr>
+        `)
+    }
+
+    function getLastId(){
+        return +$('#single-product-modal .image-table tbody tr:last td:first').text() + 1;
+    }
 
 })

@@ -5,7 +5,6 @@
 $(document).on('click' , '.update-product-btn' ,function(){
 
     // fetch product data
-    let product_id = $(this).data('id');
     let editRoute = $(this).data('route');
 
     reset();

@@ -4,11 +4,13 @@ $(document).on('click' , '.pro-table .product-name' , function(){
 
     var product_id = $(this).data('id');
 
+    localStorage.setItem('id' , product_id);
+
     $.ajax({
         method : 'get' ,
         url : 'products/'+product_id ,
         success(data){
-            
+
             handleResponse(data);
 
             //add data_proId attribute
@@ -26,7 +28,7 @@ $(document).on('click' , '.pro-table .product-name' , function(){
         $('#single-product-modal .desc-tab').text(data.desc);
         if(data.images.length == 0) {
             $('#single-product-modal .image-table tbody').html(`
-                <tr>
+                <tr class="notFound">
                     <td class="text-center py-2" colspan="3"> No Images Found </td>
                 </tr>
             `)
@@ -51,6 +53,7 @@ $(document).on('click' , '.pro-table .product-name' , function(){
                 </tr>
             `)
         })
+        
         $('#single-product-modal .overlay').css(`display` , 'none');
     }
 

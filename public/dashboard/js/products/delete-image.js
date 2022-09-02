@@ -1,11 +1,6 @@
 
 var imageId = 0 ;
-var proId = 0;
-
-// to get the product id from clicking the product name in yajra datatable
-$(document).on('click' , '.pro-table .product-name' , function(){
-    proId = $(this).data('id');
-})
+var proId = localStorage.getItem('id');
 
 
 // to get image id when click on the delete image btn in the modal in #single-product-modal
@@ -16,8 +11,6 @@ $(document).on('click' , '#single-product-modal .del-img-btn' , function(){
 
 // confirm image delete
 $(document).on('click' , '#delete-image-modal .delete-image-btn' , function(){
-
-    console.log($('#single-product-modal tbody tr').length);
 
     $.ajax({
         method : 'post' ,
@@ -33,13 +26,25 @@ $(document).on('click' , '#delete-image-modal .delete-image-btn' , function(){
 
             if($('#single-product-modal tbody tr').length == 0 ){
                 $('#single-product-modal .image-table tbody').html(`
-                    <tr>
+                    <tr class="notFound">
                         <td class="text-center py-2" colspan="3"> No Images Found </td>
                     </tr>
                 `)
+            } else {
+
+                resetTableId();
+
             }
         }
     })
+
+    function resetTableId(){
+        var id = 0 ;
+        $('#single-product-modal tbody tr').each((index , item) => {
+            var x = $(item).find('td:first').text(++id);
+            console.log(x);
+        })
+    }
 
 
 })

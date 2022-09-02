@@ -67,6 +67,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.1.0/dist/flasher.min.js"></script>
     <script src="{{ asset('dashboard/js/products/add-product.js') }}"></script>
