@@ -8,7 +8,11 @@ $(document).on('click' , '.pro-table .product-name' , function(){
         method : 'get' ,
         url : 'products/'+product_id ,
         success(data){
+            
             handleResponse(data);
+
+            //add data_proId attribute
+            $('#single-product-modal .update-img-form').attr('data-proId' , product_id);
         },
         beforeSend(){
             $('#single-product-modal .overlay').css(`display` , 'flex');
@@ -31,7 +35,9 @@ $(document).on('click' , '.pro-table .product-name' , function(){
             $('#single-product-modal .image-table tbody').append(`
                 <tr class='row${item.id}'>
                     <td scope="row">${++id}</td>
-                    <td>${item.name}</td>
+                    <td>
+                        <img style="width:100px" src="${item.path}" />
+                    </td>
                     <td><div class="btn-group btn-group-sm">
                         <button
                             type="button"

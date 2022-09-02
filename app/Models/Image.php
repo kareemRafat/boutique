@@ -9,7 +9,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name' ,'imageable_id','imageable_type'];
+    protected $fillable = ['name' ,'imageable_id','imageable_type','path'];
 
     /**
      * Get the parent imageable model (user or post).

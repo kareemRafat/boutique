@@ -49,8 +49,7 @@ class ProductRequest extends FormRequest
                     'image' =>
                         'image|
                          mimes:jpeg,png,jpg,gif,svg|
-                         max:2048|
-                         required_unless:name,'.Product::find($this->id)->name
+                         max:2048'
                 ];
                 break;
         }

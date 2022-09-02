@@ -150,4 +150,16 @@ class ProductController extends Controller
             Storage::deleteDirectory("products/{$product->name}");
         }
     }
+
+    public function update_image(Product $product , Request $request)
+    {
+        if($request->has('image')){
+            $new_image = $this->upload_file(
+                            $request->file('image'),
+                            $product // send the product object
+                        );
+
+            return response()->json(['img'=>$new_image]);
+        }
+    }
 }

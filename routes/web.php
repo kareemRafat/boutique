@@ -34,6 +34,7 @@ Route::group(['prefix'=> 'admin' , 'as' => 'admin.'] , function(){
 
     // products
     Route::post('/products/{product}/image/{image}' , [ ProductController::class , 'destroy_image']);
+    Route::post('/products/{product}/image' , [ ProductController::class , 'update_image']);
     Route::resource('/products', ProductController::class);
 });
 

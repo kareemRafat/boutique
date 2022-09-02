@@ -74,5 +74,6 @@
     <script src="{{ asset('dashboard/js/products/delete-product.js') }}"></script>
     <script src="{{ asset('dashboard/js/products/single-product.js') }}"></script>
     <script src="{{ asset('dashboard/js/products/delete-image.js') }}"></script>
+    <script src="{{ asset('dashboard/js/products/update-image.js') }}"></script>
 
 @endpush
