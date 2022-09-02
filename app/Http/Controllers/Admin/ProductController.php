@@ -140,6 +140,7 @@ class ProductController extends Controller
      */
     public function destroy_image(Product $product, Image $image)
     {
+        // delete from image table and the storage folder
         $image->delete();
         Storage::delete("products/{$product->name}/{$image->name}");
 

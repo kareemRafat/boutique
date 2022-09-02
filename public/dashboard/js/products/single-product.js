@@ -2,11 +2,11 @@
 
 $(document).on('click' , '.pro-table .product-name' , function(){
 
-    var id = $(this).data('id');
+    var product_id = $(this).data('id');
 
     $.ajax({
         method : 'get' ,
-        url : 'products/'+id ,
+        url : 'products/'+product_id ,
         success(data){
             handleResponse(data);
         },
