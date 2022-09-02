@@ -9,7 +9,6 @@ $('.add-product-form').submit(function(e){
     $.ajax({
         method : 'post' ,
         url : dateRoute,
-        dataType : 'json',
         data : formData,
         processData : false ,
         contentType : false ,

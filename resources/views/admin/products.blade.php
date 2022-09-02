@@ -2,7 +2,7 @@
 @push('custom-styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @endpush
+@endpush
 
 @section('content')
 
@@ -67,6 +67,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        var imageUrl = "{{ asset('storage/products') }}";
 
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/@flasher/flasher@1.1.0/dist/flasher.min.js"></script>

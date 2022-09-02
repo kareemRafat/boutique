@@ -17,7 +17,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->morphs('imageable'); // morphs
-            $table->string('path')->nullable();
             $table->timestamps();
         });
     }

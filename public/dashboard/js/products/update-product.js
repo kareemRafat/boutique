@@ -20,6 +20,7 @@ $(document).on('click' , '.update-product-btn' ,function(){
             $('#update-product-modal input , #update-product-modal textarea').attr('disabled','true');
         },
         success(data){
+
             // revert animation
             $('.modal-body').css('opacity', 1);
             $('#update-product-modal input , #update-product-modal textarea').removeAttr('disabled');
@@ -28,6 +29,9 @@ $(document).on('click' , '.update-product-btn' ,function(){
             $('#update-product-modal input , #update-product-modal textarea').each((index ,item)=>{
                 $(item).val(data[item.name]);
             })
+            
+            $('.old_name').val(data.name);
+
 
             // add selected attribute to the product category
             $('#update-product-modal select option').each((index , item)=> {
@@ -48,7 +52,6 @@ $(document).on('click' , '.update-product-btn' ,function(){
 $(document).on('submit', '.update-product-form' ,function(e){
 
     e.preventDefault();
-
 
     let id = $('input[name="id"]').val();
 

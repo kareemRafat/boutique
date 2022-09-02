@@ -2,7 +2,7 @@
 <div class="modal fade" id="add-product-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form class="add-product-form">
+            <form class="add-product-form" enctype=”multipart/form-data”>
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -31,7 +31,7 @@
                           <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                         </div>
                         <div class="custom-file">
-                          <input name="image" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                          <input name="image[]" type="file" multiple class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                           <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                     </div>

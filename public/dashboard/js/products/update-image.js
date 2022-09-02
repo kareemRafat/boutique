@@ -11,6 +11,7 @@ $(document).on('submit' , '#single-product-modal .update-img-form' , function(e)
     e.preventDefault();
 
     var product_id = localStorage.getItem('id');
+    var product_name = localStorage.getItem('name');
 
     $.ajax({
         method : 'post',
@@ -29,7 +30,7 @@ $(document).on('submit' , '#single-product-modal .update-img-form' , function(e)
             <tr class='row${data.img.id}'>
                 <td scope="row">${getLastId()}</td>
                 <td>
-                    <img style="width:100px" src="${data.img.path}" />
+                    <img style="width:100px" src="${imageUrl}/${product_name}/${data.img.name}" />
                 </td>
                 <td><div class="btn-group btn-group-sm">
                     <button

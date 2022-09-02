@@ -1,7 +1,7 @@
 
 var imageId = 0 ;
 var proId = localStorage.getItem('id');
-
+console.log(proId);
 
 // to get image id when click on the delete image btn in the modal in #single-product-modal
 $(document).on('click' , '#single-product-modal .del-img-btn' , function(){
@@ -11,7 +11,7 @@ $(document).on('click' , '#single-product-modal .del-img-btn' , function(){
 
 // confirm image delete
 $(document).on('click' , '#delete-image-modal .delete-image-btn' , function(){
-
+    console.log(`products/${proId}/image/${imageId}`);
     $.ajax({
         method : 'post' ,
         url : `products/${proId}/image/${imageId}`,
@@ -42,7 +42,6 @@ $(document).on('click' , '#delete-image-modal .delete-image-btn' , function(){
         var id = 0 ;
         $('#single-product-modal tbody tr').each((index , item) => {
             var x = $(item).find('td:first').text(++id);
-            console.log(x);
         })
     }
 

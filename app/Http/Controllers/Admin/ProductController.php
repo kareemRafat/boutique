@@ -52,11 +52,15 @@ class ProductController extends Controller
 
             $newProduct = Product::create($newProduct);
 
-            //Upload image and insert to image table
-            $this->upload_file(
-                $request->file('image'),
-                $newProduct // send the new product object
-            );
+            foreach($request->file('image') as $file){
+                //Upload image and insert to image table
+                $this->upload_file(
+                    $file,
+                    $newProduct // send the new product object
+                );
+            }
+
+
 
             return response()->json(['message' => 'Product created successfully']);
         }
@@ -100,15 +104,14 @@ class ProductController extends Controller
 
             $newProduct = $request->validated();
 
-            $product->update($newProduct);
+            if($newProduct['name'] !== $request['old_name']){
+                // dd(storage_path("products/{$request['old_name']}"));
+                // dd(storage_path("products/{$newProduct['name']}"));
 
-            if ($request->has('image')) {
-                //Upload image and insert to image table
-                $this->upload_file(
-                    $request->file('image'),
-                    $product // send the product object
-                );
+                Storage::move("products/{$request['old_name']}", "products/{$newProduct['name']}");
             }
+
+            $product->update($newProduct);
 
             return response()->json(['message' => 'Product updated successfully']);
         }
@@ -140,6 +143,9 @@ class ProductController extends Controller
      */
     public function destroy_image(Product $product, Image $image)
     {
+
+        // dd(Storage::delete("products/{$product->name}/{$image->name}"));
+        // dd("products/{$product->name}/{$image->name}");
         // delete from image table and the storage folder
         $image->delete();
         Storage::delete("products/{$product->name}/{$image->name}");

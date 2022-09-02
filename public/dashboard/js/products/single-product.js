@@ -3,8 +3,10 @@
 $(document).on('click' , '.pro-table .product-name' , function(){
 
     var product_id = $(this).data('id');
+    var product_name = $(this).text();
 
     localStorage.setItem('id' , product_id);
+    localStorage.setItem('name' , product_name);
 
     $.ajax({
         method : 'get' ,
@@ -38,7 +40,7 @@ $(document).on('click' , '.pro-table .product-name' , function(){
                 <tr class='row${item.id}'>
                     <td scope="row">${++id}</td>
                     <td>
-                        <img style="width:100px" src="${item.path}" />
+                        <img style="width:100px" src="${imageUrl}/${product_name}/${item.name}" />
                     </td>
                     <td><div class="btn-group btn-group-sm">
                         <button
@@ -53,7 +55,7 @@ $(document).on('click' , '.pro-table .product-name' , function(){
                 </tr>
             `)
         })
-        
+
         $('#single-product-modal .overlay').css(`display` , 'none');
     }
 
