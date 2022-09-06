@@ -10,6 +10,18 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#"  class="nav-link" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+          <i class="nav-icon fas fa-door-open"></i>
+          <span class="ml-1">
+            Logout
+          </span>
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+            @csrf
+        </form>
+      </li>
     </ul>
 
     <!-- Right navbar links -->

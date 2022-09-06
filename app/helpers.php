@@ -4,5 +4,5 @@
 
 
 function isAdminRoute(){
-    return request()->is('admin/*') ? true : false ;
+    return request()->is('admin/*') || request()->is('admin') ? true : false ;
 }
