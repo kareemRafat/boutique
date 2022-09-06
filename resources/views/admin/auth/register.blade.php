@@ -1,5 +1,9 @@
 @extends('admin.auth.layouts.app')
 
+@section('title')
+    Register
+@endsection
+
 @section('content')
 <body class="hold-transition register-page">
     <div class="register-box">

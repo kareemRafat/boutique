@@ -1,4 +1,11 @@
+
 @extends('admin.auth.layouts.app')
+
+
+@section('title')
+    Login
+@endsection
+
 
 @section('content')
 <body class="hold-transition login-page">

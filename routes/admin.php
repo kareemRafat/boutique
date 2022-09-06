@@ -28,3 +28,4 @@ Route::group(['as' => 'admin.' , 'middleware'=> ['auth:admin' , 'NoCache']] , fu
     Route::post('/products/{product}/image' , [ ProductController::class , 'update_image']);
     Route::resource('/products', ProductController::class);
 });
+
