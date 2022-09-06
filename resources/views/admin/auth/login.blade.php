@@ -27,7 +27,7 @@
       <form action="{{ route('login') }}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+          <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -55,7 +55,7 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
+              <input type="checkbox" id="remember" {{ old('remember') ? 'checked' : '' }} name="remember">
               <label for="remember">
                 Remember Me
               </label>
