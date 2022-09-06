@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\ProductController;
 */
 
 
-Route::group(['as' => 'admin.' , 'middleware'=> 'auth:admin'] , function(){
+Route::group(['as' => 'admin.' , 'middleware'=> ['auth:admin' , 'NoCache']] , function(){
     // main page
     Route::view('/','admin.index')->name('main');
 
