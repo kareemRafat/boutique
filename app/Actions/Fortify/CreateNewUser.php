@@ -3,9 +3,10 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Models\Admin;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -27,10 +28,25 @@ class CreateNewUser implements CreatesNewUsers
                 'string',
                 'email',
                 'max:255',
-                Rule::unique(User::class),
+                isAdminRoute() ? Rule::unique(Admin::class) : Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
         ])->validate();
+
+
+        if(isAdminRoute()){
+
+            return Admin::create([
+
+                'name' => $input['name'],
+
+                'email' => $input['email'],
+
+                'password' => Hash::make($input['password']),
+
+            ]);
+
+        }
 
         return User::create([
             'name' => $input['name'],

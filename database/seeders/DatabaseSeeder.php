@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'kareem',
             'email' => 'admin@admin.com',
             'password' => Hash::make(123456789) , // password
+            'verified' => 1
         ]);
 
 

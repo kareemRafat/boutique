@@ -93,5 +93,13 @@ class FortifyServiceProvider extends ServiceProvider
             return isAdminRoute() ?  view('admin.auth.login') : abort(404) ;
 
         });
+
+        // customize register view
+        Fortify::registerView(function () {
+
+            // return isAdminRoute() ?  view('admin.auth.register') : view('auth-users.register');
+            return isAdminRoute() ?  view('admin.auth.register') : abort(404);
+
+        });
     }
 }

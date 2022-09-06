@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -22,25 +22,39 @@ class UsersDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        
+
         return (new EloquentDataTable($query))
-            // ->addColumn('action', '<span>b</span>')
-            ->addColumn('created_at', function(User $user){
-                return $user ->created_at -> diffForHumans();
+            ->addColumn('action' , function(Admin $admin){
+                if($admin -> verified == 1) {
+                   return "<button class='btn btn-danger btn-sm'>deactivate</button>";
+                } else {
+                   return "<button class='btn btn-primary btn-sm'>Activate</button>";
+                }
+           })
+            ->addColumn('verified', function(Admin $admin){
+                if($admin -> verified == 1) {
+                   return "<i class='fas fa-user-check'></i>";
+                } else {
+                   return "<i class='fas fa-user-slash'></i>";
+                }
+           })
+            ->addColumn('created_at', function(Admin $admin){
+                return $admin ->created_at -> diffForHumans();
             })
-            ->addColumn('updated_at', function(User $user){
-                return $user ->updated_at -> diffForHumans();
+            ->addColumn('updated_at', function(Admin $admin){
+                return $admin ->updated_at -> diffForHumans();
             })
+            ->rawColumns(['verified' , 'action'])
             ->setRowId('id');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\User $model
+     * @param \App\Models\Admin $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model): QueryBuilder
+    public function query(Admin $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -53,7 +67,7 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('users-table')
+                    ->setTableId('admins-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     // ->orderBy(1)
@@ -61,7 +75,7 @@ class UsersDataTable extends DataTable
                         'order' => [0,'asc'] ,
                         "language"=> [
                             // when table is empty and no search data
-                            "emptyTable" => "No users registered",
+                            "emptyTable" => "No Admins registered",
                             "zeroRecords" => "No records found"
                         ]
                     ])
@@ -86,8 +100,12 @@ class UsersDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
+            Column::make('verified'),
             Column::make('created_at')->title('Created'),
             Column::make('updated_at')->title('Updated'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false),
         ];
     }
 
@@ -98,6 +116,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
+        return 'Admins_' . date('YmdHis');
     }
 }
