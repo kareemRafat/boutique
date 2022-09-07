@@ -10,7 +10,7 @@
 @section('content')
 <body class="hold-transition login-page">
     @if (session('status'))
-    <div class="mb-4 font-medium text-sm text-green-600">
+    <div class=" alert alert-default-success mb-4">
         {{ session('status') }}
     </div>
 @endif

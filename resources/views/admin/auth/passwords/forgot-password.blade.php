@@ -35,7 +35,7 @@
               <!-- /.col -->
               <div class="col-12">
                 @if (session('status'))
-                    <div class="mt-2 alert alert-success mb-4 font-medium text-sm">
+                    <div class="mt-2 alert alert-default-success mb-4 font-medium text-sm">
                         {{ session('status') }}
                     </div>
                 @endif
