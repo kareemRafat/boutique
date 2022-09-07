@@ -44,7 +44,7 @@
               <div class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
               </div>
-          @enderror
+              @enderror
             </div>
             <div class="row">
               <div class="col-8">
@@ -69,7 +69,7 @@
           <!-- /.social-auth-links -->
 
           <p class="mb-1">
-            <a href="forgot-password.html">I forgot my password</a>
+            <a href="{{ route('password.request') }}">I forgot my password</a>
           </p>
           <p class="mb-1 font-weight-bold">
             <a href="{{ route('register') }}" class="text-center">Register new Admin</a>

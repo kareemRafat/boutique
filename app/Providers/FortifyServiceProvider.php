@@ -31,7 +31,9 @@ class FortifyServiceProvider extends ServiceProvider
 
                 'fortify.prefix' => 'admin',
 
-                'fortify.home' => 'admin/'
+                'fortify.home' => 'admin/',
+
+                'fortify.passwords' => 'admins'
 
             ]);
 
@@ -100,6 +102,11 @@ class FortifyServiceProvider extends ServiceProvider
             // return isAdminRoute() ?  view('admin.auth.register') : view('auth-users.register');
             return isAdminRoute() ?  view('admin.auth.register') : abort(404);
 
+        });
+
+        // customize password reset view
+        Fortify::requestPasswordResetLinkView(function () {
+            return isAdminRoute() ?  view('admin.auth.passwords.forgot-password') : abort(404);
         });
     }
 }
