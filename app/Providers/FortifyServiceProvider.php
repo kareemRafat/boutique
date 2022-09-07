@@ -104,9 +104,14 @@ class FortifyServiceProvider extends ServiceProvider
 
         });
 
-        // customize password reset view
+        // customize forgot password view
         Fortify::requestPasswordResetLinkView(function () {
             return isAdminRoute() ?  view('admin.auth.passwords.forgot-password') : abort(404);
+        });
+
+        // customize password reset view
+        Fortify::resetPasswordView(function ($request) {
+            return view('admin.auth.passwords.reset-password', ['request' => $request]);
         });
     }
 }

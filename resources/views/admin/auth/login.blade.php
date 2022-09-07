@@ -9,6 +9,11 @@
 
 @section('content')
 <body class="hold-transition login-page">
+    @if (session('status'))
+    <div class="mb-4 font-medium text-sm text-green-600">
+        {{ session('status') }}
+    </div>
+@endif
     <div class="login-box">
       <!-- /.login-logo -->
       <div class="card card-outline card-primary">
