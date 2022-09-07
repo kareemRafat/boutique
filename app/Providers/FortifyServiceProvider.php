@@ -44,7 +44,6 @@ class FortifyServiceProvider extends ServiceProvider
 
             public function toResponse($request)
             {
-
                 // return isAdminRoute() ?  redirect('/admin') : redirect('/home');
                 return isAdminRoute() ?  redirect('/admin') : abort(404);
 
@@ -57,7 +56,6 @@ class FortifyServiceProvider extends ServiceProvider
 
             public function toResponse($request)
             {
-
                 // return isAdminRoute() ?  redirect('/admin/login') : redirect('/login');
                 return isAdminRoute() ?  redirect('/admin/login') : abort(404);
 
@@ -90,7 +88,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         // customize login view
         Fortify::loginView(function () {
-
             // return isAdminRoute() ?  view('admin.auth.login') : view('auth-users.login');
             return isAdminRoute() ?  view('admin.auth.login') : abort(404) ;
 
@@ -98,7 +95,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         // customize register view
         Fortify::registerView(function () {
-
             // return isAdminRoute() ?  view('admin.auth.register') : view('auth-users.register');
             return isAdminRoute() ?  view('admin.auth.register') : abort(404);
 
@@ -112,6 +108,11 @@ class FortifyServiceProvider extends ServiceProvider
         // customize password reset view
         Fortify::resetPasswordView(function ($request) {
             return view('admin.auth.passwords.reset-password', ['request' => $request]);
+        });
+
+        // customize email verification view
+        Fortify::verifyEmailView(function () {
+            return view('admin.auth.verify-email');
         });
     }
 }

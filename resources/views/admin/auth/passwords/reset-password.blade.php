@@ -16,6 +16,7 @@
           <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
           <form action="{{ route('password.update') }}" method="post">
             @csrf
+            {{-- get the email and token form url --}}
             <input type="hidden" name="token" value="{{ request()->route('token') }}">
             <input type="hidden" name="email" value="{{ request('email') }}">
             <div class="input-group mb-3">

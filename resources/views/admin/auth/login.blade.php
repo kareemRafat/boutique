@@ -10,6 +10,7 @@
 @section('content')
 <body class="hold-transition login-page">
     @if (session('status'))
+    {{-- for password reset confirmation --}}
     <div class=" alert alert-default-success mb-4">
         {{ session('status') }}
     </div>
