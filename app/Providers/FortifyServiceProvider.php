@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -12,6 +14,7 @@ use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Illuminate\Validation\ValidationException;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -85,6 +88,21 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
+        // Customizing User Authentication to check is admin veririfed
+        Fortify::authenticateUsing(function (Request $request) {
+            $admin = Admin::where('email', $request->email)->first();
+
+            if(!$admin->verified) {
+                throw ValidationException::withMessages([
+                    Fortify::username() => "user is not verified yet . Please contact back the owner.",
+                ]);
+            }
+            elseif ($admin && $admin->verified) {
+                if(Hash::check($request->password, $admin->password)){
+                    return $admin;
+                }
+            }
+        });
 
         // customize login view
         Fortify::loginView(function () {
