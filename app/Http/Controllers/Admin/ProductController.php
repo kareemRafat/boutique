@@ -16,6 +16,11 @@ use App\Http\Requests\Admin\ProductRequest;
 class ProductController extends Controller
 {
     use File;
+
+    public function __construct() {
+        // you need to confirm password to access products page
+        $this->middleware('password.confirm');
+    }
     /**
      * Display a listing of the resource.
      *

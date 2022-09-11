@@ -26,7 +26,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if(isAdminRoute()) {
+        if (isAdminRoute()) {
 
             config([
 
@@ -39,29 +39,25 @@ class FortifyServiceProvider extends ServiceProvider
                 'fortify.passwords' => 'admins'
 
             ]);
-
         }
 
         // login Response
-        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
-
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse
+        {
             public function toResponse($request)
             {
                 // return isAdminRoute() ?  redirect('/admin') : redirect('/home');
                 return isAdminRoute() ?  redirect('/admin') : abort(404);
-
             }
-
         });
 
         // logout Response
-        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
-
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse
+        {
             public function toResponse($request)
             {
                 // return isAdminRoute() ?  redirect('/admin/login') : redirect('/login');
                 return isAdminRoute() ?  redirect('/admin/login') : abort(404);
-
             }
         });
     }
@@ -81,56 +77,148 @@ class FortifyServiceProvider extends ServiceProvider
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 
-            return Limit::perMinute(5)->by($email.$request->ip());
+            return Limit::perMinute(5)->by($email . $request->ip());
         });
 
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        // Customizing User Authentication to check is admin veririfed
+        // Customizing admin Authentication to check is admin veririfed
+        $this->authenticateAdmin();
+
+        // customize login view (private methods)
+        $this->adminLogin();
+
+        // customize register view (private methods)
+        $this->adminRegister();
+
+        // customize forgot password view (private methods)
+        $this->adminForgotPassword();
+
+        // customize password reset view (private methods)
+        $this->adminPasswordReset();
+
+        // customize email verification view (private methods)
+        $this->adminEmailVerification();
+
+        // customize password confirmation view (private methods)
+        $this->adminPasswordConfirmation();
+    }
+
+    /**
+     *  Customizing User Authentication to check is admin veririfed
+     *  login logic modification
+     *
+     * @return admin
+     */
+    private function authenticateAdmin()
+    {
         Fortify::authenticateUsing(function (Request $request) {
             $admin = Admin::where('email', $request->email)->first();
 
-            if(!$admin->verified) {
-                throw ValidationException::withMessages([
-                    Fortify::username() => "user is not verified yet . Please contact back the owner.",
-                ]);
-            }
-            elseif ($admin && $admin->verified) {
-                if(Hash::check($request->password, $admin->password)){
-                    return $admin;
+            if ($admin) {
+                if (!Hash::check($request->password, $admin->password)) {
+                    throw ValidationException::withMessages([
+                        Fortify::username() => "These credentials do not match our records."
+                    ]);
+                } elseif (!$admin->verified) {
+                    throw ValidationException::withMessages([
+                        Fortify::username() => "user is not verified yet . Please contact back the owner.",
+                    ]);
                 }
+
+                // send verification email if admin not email verified yet
+                $admin->sendEmailVerificationNotification();
+
+                return $admin;
             }
         });
+    }
 
-        // customize login view
+    /**
+     * customize login view
+     *
+     * @return view
+     */
+    private function adminLogin()
+    {
         Fortify::loginView(function () {
             // return isAdminRoute() ?  view('admin.auth.login') : view('auth-users.login');
-            return isAdminRoute() ?  view('admin.auth.login') : abort(404) ;
-
+            return isAdminRoute()
+                ?  view('admin.auth.login')
+                : abort(404);
         });
+    }
 
-        // customize register view
+    /**
+     * customize register view
+     *
+     * @return view
+     */
+    private function adminRegister()
+    {
         Fortify::registerView(function () {
             // return isAdminRoute() ?  view('admin.auth.register') : view('auth-users.register');
-            return isAdminRoute() ?  view('admin.auth.register') : abort(404);
-
+            return isAdminRoute()
+                ?  view('admin.auth.register')
+                : abort(404);
         });
+    }
 
-        // customize forgot password view
+    /**
+     * customize forgot password view
+     *
+     * @return view
+     */
+    private function adminForgotPassword()
+    {
         Fortify::requestPasswordResetLinkView(function () {
-            return isAdminRoute() ?  view('admin.auth.passwords.forgot-password') : abort(404);
+            return isAdminRoute()
+                ?  view('admin.auth.passwords.forgot-password')
+                : abort(404);
         });
+    }
 
-        // customize password reset view
+    /**
+     * customize password reset view
+     *
+     * @return view
+     */
+    private function adminPasswordReset()
+    {
         Fortify::resetPasswordView(function ($request) {
-            return view('admin.auth.passwords.reset-password', ['request' => $request]);
+            return isAdminRoute()
+                ?  view('admin.auth.passwords.reset-password', ['request' => $request])
+                : abort(404);
         });
+    }
 
-        // customize email verification view
+    /**
+     * customize password confirmation view
+     * use middleware('password.confirm') in products controller
+     * @return view
+     */
+    private function adminPasswordConfirmation()
+    {
+        Fortify::confirmPasswordView(function () {
+            return isAdminRoute()
+                ?  view('admin.auth.passwords.confirm-password')
+                : abort(404);
+        });
+    }
+
+    /**
+     * customize email verification view
+     *
+     * @return view
+     */
+    private function adminEmailVerification()
+    {
         Fortify::verifyEmailView(function () {
-            return view('admin.auth.verify-email');
+            return isAdminRoute()
+                ?  view('admin.auth.verify-email')
+                : abort(404);
         });
     }
 }
