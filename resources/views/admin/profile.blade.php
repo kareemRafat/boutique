@@ -119,7 +119,7 @@
                                                 <div class="col-md-10 m-auto">
                                                     <div class="text-center mt-4">
                                                         <p class="font-weight-bold">Two-factor authentication enabled</p>
-                                                        <form method="post" action="{{ route('two-factor.enable') }}">
+                                                        <form method="post" action="{{ route('two-factor.disable') }}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="sumbit" class="btn btn-danger">Disable two-factor authentication</button>

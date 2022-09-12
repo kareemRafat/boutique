@@ -13,7 +13,7 @@
         </div>
         <div class="card-body">
           <p class="login-box-msg">you need to two-factor authentication code</p>
-          <form action="{{ url('/two-factor-challenge') }}" method="post">
+          <form action="{{ route('two-factor.post-code') }}" method="post">
             @csrf
             <div class="input-group mb-3">
               <input name="code" type="text"  class="form-control @error('code') is-invalid @enderror" placeholder="Code">
