@@ -34,6 +34,7 @@ class ProductRequest extends FormRequest
                     'stock' => 'required|numeric',
                     'description' => 'required',
                     'cat_id' => 'required|numeric',
+                    'image' => 'required',
                     'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
                 ];
                 break ;
@@ -59,7 +60,7 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'image.required_unless' => 'image is required when name changes'
+            'image.required' => 'image is required'
         ];
     }
 }
