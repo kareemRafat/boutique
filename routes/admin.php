@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,9 @@ Route::group(['as' => 'admin.' , 'middleware'=> ['auth:admin' , 'NoCache' ,'veri
     Route::post('/products/{product}/image/{image}' , [ ProductController::class , 'destroy_image']);
     Route::post('/products/{product}/image' , [ ProductController::class , 'update_image']);
     Route::resource('/products', ProductController::class);
+
+    //profile
+    Route::get('/profile' , [ProfileController::class , 'index'])
+        ->name('profile.index');
 });
 
