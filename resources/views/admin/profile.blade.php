@@ -99,16 +99,56 @@
                                 <div class="tab-content">
                                     <!-- /.tab-pane -->
                                     <div class="tab-pane active" id="two-factor">
-                                        <div class="row">
-                                            <p class="font-weight-bold">Two-factor Authentication</p>
-                                            <div class="col-md-10 m-auto">
-                                                <div class="text-center mt-4">
-                                                    <p class="font-weight-bold">Two-factor authentication is not enabled yet</p>
-                                                    <p>Two-factor authentication added an extra security layer to your account by requiring more than just a password to login</p>
-                                                    <button class="btn btn-primary">Enable two-factor authentication</button>
+                                        @if(!auth()->user()->two_factor_secret)
+                                            <div class="row">
+                                                <p class="font-weight-bold">Two-factor Authentication</p>
+                                                <div class="col-md-10 m-auto">
+                                                    <div class="text-center mt-4">
+                                                        <p class="font-weight-bold">Two-factor authentication is not enabled yet</p>
+                                                        <p>Two-factor authentication added an extra security layer to your account by requiring more than just a password to login</p>
+                                                        <form method="post" action="{{ route('two-factor.enable') }}">
+                                                            @csrf
+                                                            <button type="sumbit" class="btn btn-primary">Enable two-factor authentication</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @else
+                                            <div class="row">
+                                                <p class="font-weight-bold">Two-factor Authentication</p>
+                                                <div class="col-md-10 m-auto">
+                                                    <div class="text-center mt-4">
+                                                        <p class="font-weight-bold">Two-factor authentication enabled</p>
+                                                        <form method="post" action="{{ route('two-factor.enable') }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="sumbit" class="btn btn-danger">Disable two-factor authentication</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if (session('status') == 'two-factor-authentication-confirmed')
+                                            <div class="mb-4 font-medium text-sm">
+                                                Two factor authentication confirmed and enabled successfully.
+                                            </div>
+                                        @endif
+                                        @if (session('status') == 'two-factor-authentication-enabled')
+                                            <div class="mb-4 text-center mt-5">
+                                                Please finish configuring two factor authentication below.
+                                            </div>
+                                            <div class="text-center mb-5">
+                                                {!! auth()->user()->twoFactorQrCodeSvg() !!}
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <p class="font-weight-bold">please store there recovery codes in a secure location</p>
+                                                    @foreach (auth()->user()->recoveryCodes() as $code )
+                                                        <p>{{ $code }}</p>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                     <!-- /.tab-pane -->
 

@@ -104,6 +104,9 @@ class FortifyServiceProvider extends ServiceProvider
 
         // customize password confirmation view (private methods)
         $this->adminPasswordConfirmation();
+
+        // customize two-factor challenge view (private methods)
+        $this->adminTwoFactorChallenge();
     }
 
     /**
@@ -218,6 +221,20 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::verifyEmailView(function () {
             return isAdminRoute()
                 ?  view('admin.auth.verify-email')
+                : abort(404);
+        });
+    }
+
+    /**
+     * customize two-factor challenge view
+     *
+     * @return view
+     */
+    private function adminTwoFactorChallenge()
+    {
+        Fortify::twoFactorChallengeView(function () {
+            return isAdminRoute()
+                ?  view('admin.auth.two-factor-challenge')
                 : abort(404);
         });
     }
