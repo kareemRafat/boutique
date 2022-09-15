@@ -131,8 +131,10 @@ class FortifyServiceProvider extends ServiceProvider
                     ]);
                 }
 
-                // send verification email if admin not email verified yet
-                $admin->sendEmailVerificationNotification();
+                if(!$admin->hasVerifiedEmail()){
+                    // send verification email if admin not email verified yet
+                    $admin->sendEmailVerificationNotification();
+                }
 
                 return $admin;
             }
