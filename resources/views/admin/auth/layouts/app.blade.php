@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dashboard/dist/css/adminlte.min.css') }}">
+  @yield('css-section')
 </head>
 @yield('content')
 {{-- <body class="hold-transition register-page">
@@ -102,5 +103,6 @@
 <script src="{{ asset('dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('dashboard/dist/js/adminlte.js')}}"></script>
+@stack('custom-auth-scripts')
 </body>
 </html>
