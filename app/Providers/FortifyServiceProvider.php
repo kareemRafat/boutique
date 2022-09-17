@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Illuminate\Validation\ValidationException;
+use Laravel\Fortify\Contracts\VerifyEmailResponse;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -41,25 +43,8 @@ class FortifyServiceProvider extends ServiceProvider
             ]);
         }
 
-        // login Response
-        $this->app->instance(LoginResponse::class, new class implements LoginResponse
-        {
-            public function toResponse($request)
-            {
-                // return isAdminRoute() ?  redirect('/admin') : redirect('/home');
-                return isAdminRoute() ?  redirect('/admin') : abort(404);
-            }
-        });
+        return $this->viewResoponses();
 
-        // logout Response
-        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse
-        {
-            public function toResponse($request)
-            {
-                // return isAdminRoute() ?  redirect('/admin/login') : redirect('/login');
-                return isAdminRoute() ?  redirect('/admin/login') : abort(404);
-            }
-        });
     }
 
     /**
@@ -107,6 +92,61 @@ class FortifyServiceProvider extends ServiceProvider
 
         // customize two-factor challenge view (private methods)
         $this->adminTwoFactorChallenge();
+    }
+
+    /**
+     *  Customizing view responses
+     *
+     */
+    private function viewResoponses()
+    {
+        // login Response
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse
+        {
+            public function toResponse($request)
+            {
+                // return isAdminRoute() ?  redirect('/admin') : redirect('/home');
+                return isAdminRoute() ?  redirect('/admin') : abort(404);
+            }
+        });
+
+        // logout Response
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse
+        {
+            public function toResponse($request)
+            {
+                // return isAdminRoute() ?  redirect('/admin/login') : redirect('/login');
+                return isAdminRoute() ?  redirect('/admin/login') : abort(404);
+            }
+        });
+
+        // VerifyEmailResponse
+        $this->app->instance(VerifyEmailResponse::class, new class implements VerifyEmailResponse
+        {
+            public function toResponse($request)
+            {
+                // if admin verifiy it`s email don`t login to the site
+                // because admin wain to owner verification
+                if(isAdminRoute()){
+
+                    Auth::logout();
+
+                    $request->session()->invalidate();
+
+                    $request->session()->regenerateToken();
+
+                    return redirect('/admin/login')
+                        ->with('status' , 'email verified and waiting admin approval');
+
+                } else {
+
+                    // return redirect('/login');
+
+                    abort(404);
+
+                }
+            }
+        });
     }
 
     /**
