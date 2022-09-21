@@ -12,6 +12,10 @@ use App\Http\Controllers\Controller;
 use App\DataTables\ProductsDataTable;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Mail\newAdminRegisterdMail;
+use App\Mail\newProductAdded;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -65,7 +69,8 @@ class ProductController extends Controller
                 );
             }
 
-
+            $admin = Admin::find(1)->get() ;
+            Mail::to($admin)->send(new newProductAdded($newProduct));
 
             return response()->json(['message' => 'Product created successfully']);
         }

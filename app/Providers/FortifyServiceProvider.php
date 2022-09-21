@@ -43,6 +43,7 @@ class FortifyServiceProvider extends ServiceProvider
             ]);
         }
 
+        // Customizing view responses
         return $this->viewResoponses();
 
     }
