@@ -33,4 +33,3 @@ Route::group(['as' => 'admin.' , 'middleware'=> ['auth:admin' , 'NoCache' ,'veri
     Route::get('/profile' , [ProfileController::class , 'index'])
         ->name('profile.index');
 });
-
